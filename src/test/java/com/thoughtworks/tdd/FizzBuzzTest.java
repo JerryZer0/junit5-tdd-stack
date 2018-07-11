@@ -34,31 +34,10 @@ public class FizzBuzzTest {
     }
 
     @Test
-    public void should_return_FizzBuzz_when_input_15() {
-        FizzBuzz fizzBuzz = new FizzBuzz();
-        String result = fizzBuzz.fizzBuzz(15);
-        assert (result.equals("FizzBuzz"));
-    }
-
-    @Test
     public void should_return_FizzWhizz_when_input_21() {
         FizzBuzz fizzBuzz = new FizzBuzz();
         String result = fizzBuzz.fizzBuzz(21);
         assert (result.equals("FizzWhizz"));
-    }
-
-    @Test
-    public void should_return_BuzzWhizz_when_input_35() {
-        FizzBuzz fizzBuzz = new FizzBuzz();
-        String result = fizzBuzz.fizzBuzz(35);
-        assert (result.equals("BuzzWhizz"));
-    }
-
-    @Test
-    public void should_return_FizzBuzzWhizz_when_input_105() {
-        FizzBuzz fizzBuzz = new FizzBuzz();
-        String result = fizzBuzz.fizzBuzz(105);
-        assert (result.equals("FizzBuzzWhizz"));
     }
 
     @Test
@@ -67,10 +46,18 @@ public class FizzBuzzTest {
         String result = fizzBuzz.fizzBuzz(13);
         assert (result.equals("Fizz"));
     }
+
     @Test
     public void should_return_Buzz_when_input_endOf_5() {
         FizzBuzz fizzBuzz = new FizzBuzz();
         String result = fizzBuzz.fizzBuzz(15);
         assert (result.equals("Buzz"));
+    }
+
+    @Test
+    public void should_return_Buzz_when_input_endOf_7() {
+        FizzBuzz fizzBuzz = new FizzBuzz();
+        String result = fizzBuzz.fizzBuzz(17);
+        assert (result.equals("Whizz"));
     }
 }
