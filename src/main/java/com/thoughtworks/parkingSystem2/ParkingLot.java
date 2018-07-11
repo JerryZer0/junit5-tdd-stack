@@ -1,21 +1,28 @@
 package com.thoughtworks.parkingSystem2;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class ParkingLot {
 
     private int size;
-    public HashMap<Car, Receipt> carList = new HashMap<>();
+    public HashMap<Receipt, Car> carList = new HashMap<>();
 
     ParkingLot(int numb){
         this.size = numb;
     }
-    public void park(Car car) {
+    public Receipt park(Car car) {
+        Receipt receipt = new Receipt();
         if(size>carList.size()){
-            carList.put(car,new Receipt());
+            carList.put(receipt, car);
         }else{
             throw new ParkingExcpetion();
         }
+        return receipt;
+    }
+
+    public Car getOutCar(Receipt receipt) {
+        Car car = carList.get(receipt);
+        carList.remove(receipt);
+        return car;
     }
 }

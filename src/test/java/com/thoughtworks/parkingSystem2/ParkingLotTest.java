@@ -27,4 +27,13 @@ public class ParkingLotTest {
             System.out.println("You can not park any more.The park is full!!");
         }
     }
+    @Test
+    public void shoule_get_out_the_car_when_given_receipt_is_true(){
+        ParkingLot parkingLot = new ParkingLot(2);
+        Car car = new Car();
+        Receipt receipt = parkingLot.park(car);
+
+        assertThat(parkingLot.getOutCar(receipt),is(car));
+
+    }
 }
