@@ -29,6 +29,18 @@ public class ParkingLotTest {
         }
     }
     @Test
+    public void should_park_failed_when_the_park_is_full_1(){
+        ParkingLot parkingLot = new ParkingLot(1);
+        parkingLot.park(new Car());
+        try{
+            parkingLot.park(new Car());
+
+        }catch (ParkingExcpetion p){
+            System.out.println("You can not park any more.The park is full!!");
+        }
+    }
+
+    @Test
     public void should_get_out_the_car_when_given_receipt_is_true(){
         ParkingLot parkingLot = new ParkingLot(2);
         Car car = new Car();
