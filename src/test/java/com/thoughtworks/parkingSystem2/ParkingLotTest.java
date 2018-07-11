@@ -52,4 +52,10 @@ public class ParkingLotTest {
         ParkingLot parkingLot = new ParkingLot(0);
         assertThat(parkingLot.isFull(),is(true));
     }
+
+    @Test
+    public void should_be_false_when_call_isFull_given_parking_lot_is_not_full(){
+        ParkingLot parkingLot = new ParkingLot(1);
+        assertThat(parkingLot.isFull(),is(false));
+    }
 }
