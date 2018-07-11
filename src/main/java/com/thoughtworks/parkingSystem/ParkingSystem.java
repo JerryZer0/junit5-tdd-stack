@@ -25,6 +25,7 @@ public class ParkingSystem {
     public boolean getCarOut(Car car){
         for(Car outCar:parkList){
             if(car.id == outCar.id){
+                parkList.remove(car);
                 return true;
             }
         }
