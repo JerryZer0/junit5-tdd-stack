@@ -1,13 +1,10 @@
 package com.thoughtworks.parkingSystem;
 
 public class Car {
-    public int id;
+    public String id;
 
-    Car(int id){
+    Car(String id){
         this.id = id;
     }
 
-    public void getCarOut() {
-
-    }
 }

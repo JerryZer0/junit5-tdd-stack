@@ -11,13 +11,14 @@ public class ParkingSystem {
         this.saturation = count;
     }
 
-    public boolean park(Car car) {
+    public boolean park(Car car) throws ParkException{
         if(parkList.size()<saturation){
             parkList.add(car);
             return true;
         }
         else{
-            return false;
+            throw new ParkException();
+            //return false;
         }
     }
 
@@ -30,4 +31,10 @@ public class ParkingSystem {
         return false;
     }
 
+    public int getParkingSpace() {
+        int num = saturation-parkList.size();
+        if(num<1)
+            System.out.println("停车场已满");
+        return num;
+    }
 }
