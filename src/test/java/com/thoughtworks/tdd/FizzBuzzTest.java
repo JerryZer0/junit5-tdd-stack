@@ -67,4 +67,10 @@ public class FizzBuzzTest {
         String result = fizzBuzz.fizzBuzz(13);
         assert (result.equals("Fizz"));
     }
+    @Test
+    public void should_return_Buzz_when_input_endOf_5() {
+        FizzBuzz fizzBuzz = new FizzBuzz();
+        String result = fizzBuzz.fizzBuzz(15);
+        assert (result.equals("Buzz"));
+    }
 }

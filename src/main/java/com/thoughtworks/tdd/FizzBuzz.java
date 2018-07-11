@@ -16,11 +16,12 @@ public class FizzBuzz {
             sb.append("Fizz");
         }
         if (i % 10 == 5) {
+            sb.delete(0, sb.length());
             sb.append("Buzz");
         }
-        if (i % 10 == 7) {
-            sb.append("Whizz");
-        }
+//        if (i % 10 == 7) {
+//            sb.append("Whizz");
+//        }
 
 
         return sb.toString().equals("") ? String.valueOf(i) : sb.toString();
