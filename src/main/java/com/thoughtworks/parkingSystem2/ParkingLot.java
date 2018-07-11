@@ -25,4 +25,8 @@ public class ParkingLot {
         carList.remove(receipt);
         return car;
     }
+
+    public boolean isFull() {
+        return size == carList.size();
+    }
 }
