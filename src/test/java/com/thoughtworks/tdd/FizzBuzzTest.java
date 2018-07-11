@@ -55,7 +55,7 @@ public class FizzBuzzTest {
     }
 
     @Test
-    public void should_return_Buzz_when_input_endOf_7() {
+    public void should_return_Whizz_when_input_endOf_7() {
         FizzBuzz fizzBuzz = new FizzBuzz();
         String result = fizzBuzz.fizzBuzz(17);
         assert (result.equals("Whizz"));
