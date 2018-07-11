@@ -18,4 +18,13 @@ public class ParkingLotTest {
             fail("It should not throw exception!");
         }
     }
+    @Test
+    public void shoule_park_failed_when_the_park_is_full(){
+        ParkingLot parkingLot = new ParkingLot(0);
+        try{
+            parkingLot.park(new Car());
+        }catch (ParkingExcpetion p){
+            System.out.println("You can not park any more.The park is full!!");
+        }
+    }
 }
