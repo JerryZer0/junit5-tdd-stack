@@ -42,21 +42,13 @@ public class ParkingBoy {
         return r;
     }
 
-//    public Car getOutCar(Receipt receipt) {
-//        Car car = new Car();
-//        if()
-//        return new Car();
-//    }
+    public Car getOutCar(Receipt receipt) {
+        Car car = new Car();
+        for(int i=0;i<parkLotList.size();i++){
+            car = parkLotList.get(i).getOutCar(receipt);
+            if(car!=null)break;
+        }
+        return car;
+    }
 
-//    public Receipt getOutTheCar(Receipt receipt) {
-//        Receipt r = new Receipt();
-//        if(!parkLot1.isFull()){
-//            r = parkLot1.park(car);
-//        }else if(!parkLot2.isFull()){
-//            r = parkLot2.park(car);
-//        }else{
-//            throw new ParkingExcpetion();
-//        }
-//        return r;
-//    }
 }

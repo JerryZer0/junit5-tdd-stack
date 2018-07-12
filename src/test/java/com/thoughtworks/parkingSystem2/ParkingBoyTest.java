@@ -2,6 +2,7 @@ package com.thoughtworks.parkingSystem2;
 
 import org.junit.jupiter.api.Test;
 
+import static org.hamcrest.core.Is.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -40,13 +41,13 @@ public class ParkingBoyTest {
         }
     }
 
-//    @Test
-//    public void should_get_out_car_successfully_when_car_is_in_lot1_or_lot2(){
-//        int contain[] ={1,2};
-//        ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
-//        Car car = new Car();
-//        Receipt receipt = parkingBoy.park(car);
-//        assertThat(parkingBoy.getOutCar(receipt),is(car));
-//
-//    }
+    @Test
+    public void should_get_out_car_successfully_when_car_is_in_lot(){
+        int contain[] ={1,2};
+        ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
+        Car car = new Car();
+        Receipt receipt = parkingBoy.park(car);
+        assertThat(parkingBoy.getOutCar(receipt),is(car));
+
+    }
 }
