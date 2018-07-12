@@ -16,6 +16,8 @@ public class ParkingBoy {
             r = parkLot1.park(car);
         }else if(!parkLot2.isFull()){
             r = parkLot2.park(car);
+        }else{
+            throw new ParkingExcpetion();
         }
     }
 }
