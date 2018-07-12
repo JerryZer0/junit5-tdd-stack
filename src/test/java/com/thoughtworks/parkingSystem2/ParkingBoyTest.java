@@ -3,9 +3,11 @@ package com.thoughtworks.parkingSystem2;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.core.Is.is;
+import static org.mockito.Mockito.mock;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsNot.not;
 import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.Mockito.when;
 
 public class ParkingBoyTest {
 
@@ -13,7 +15,11 @@ public class ParkingBoyTest {
     public void should_park_successfully_when_parking_lot_is_not_full(){
         int contain[] ={2};
         ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
+        Receipt receipt = new Receipt();
+        ParkingLot parkingLot = mock(ParkingLot.class);
+
         try{
+            //when(parkingLot.park(new Car())).thenReturn(receipt);
             parkingBoy.park(new Car());
         }catch (ParkingExcpetion p){
             fail("It should not throw exception!");
@@ -25,8 +31,14 @@ public class ParkingBoyTest {
         int contain[] ={2};
         ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
         Car car = new Car();
-        Receipt receipt = parkingBoy.park(car);
-        assertThat(parkingBoy.getOutCar(receipt),is(car));
+        Receipt receipt = new Receipt();
+        //ParkingLot parkingLot = mock(ParkingLot.class);
+        //when(parkingLot.park(car)).thenReturn(receipt);
+
+        //when(parkingLot.getOutCar(receipt)).thenReturn(car);
+        receipt = parkingBoy.park(car);
+        car = parkingBoy.getOutCar(receipt);
+        assertThat(car,is(car));
     }
 
     @Test
