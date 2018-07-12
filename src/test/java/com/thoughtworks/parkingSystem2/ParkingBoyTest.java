@@ -59,4 +59,19 @@ public class ParkingBoyTest {
         Receipt receipt = parkingBoy.park(new Car());
         assertThat(parkingBoy.getOutCar(receipt),not(car));
     }
+
+    @Test
+    public void should_park_successfully_when_car_is_out_from_parkingLot1(){
+        int contain[] ={1,1};
+        ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
+        Car car = new Car();
+        Receipt receipt1 = parkingBoy.park(car);
+        Receipt receipt2 = parkingBoy.park(new Car());
+        car = parkingBoy.getOutCar(receipt1);
+        try{
+            parkingBoy.park(car);
+        }catch (ParkingExcpetion p){
+            fail("It should not throw exception!");
+        }
+    }
 }
