@@ -14,6 +14,8 @@ public class ParkingBoy {
         Receipt r = new Receipt();
         if(!parkLot1.isFull()){
             r = parkLot1.park(car);
+        }else if(!parkLot2.isFull()){
+            r = parkLot2.park(car);
         }
     }
 }
