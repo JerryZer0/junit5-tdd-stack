@@ -10,6 +10,17 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class ParkingBoyTest {
 
     @Test
+    public void should_park_successfully_when_parking_lot_is_not_full(){
+        int contain[] ={2};
+        ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
+        try{
+            parkingBoy.park(new Car());
+        }catch (ParkingExcpetion p){
+            fail("It should not throw exception!");
+        }
+    }
+
+    @Test
     public void should_park_successfully_when_parking_lot1_is_not_full(){
         int contain[] ={1,2};
         ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
