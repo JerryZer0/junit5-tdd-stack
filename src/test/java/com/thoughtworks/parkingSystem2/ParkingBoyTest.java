@@ -21,6 +21,15 @@ public class ParkingBoyTest {
     }
 
     @Test
+    public void should_get_out_car_successfully_when_car_is_in_the_only_lot(){
+        int contain[] ={2};
+        ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
+        Car car = new Car();
+        Receipt receipt = parkingBoy.park(car);
+        assertThat(parkingBoy.getOutCar(receipt),is(car));
+    }
+
+    @Test
     public void should_park_successfully_when_parking_lot1_is_not_full(){
         int contain[] ={1,2};
         ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
@@ -54,7 +63,7 @@ public class ParkingBoyTest {
     }
 
     @Test
-    public void should_get_out_car_successfully_when_car_is_in_lot(){
+    public void should_get_out_car_successfully_when_car_is_in_lots(){
         int contain[] ={1,2};
         ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
         Car car = new Car();
@@ -63,7 +72,7 @@ public class ParkingBoyTest {
     }
 
     @Test
-    public void should_get_out_car_failed_when_car_is_not_in_lot(){
+    public void should_get_out_car_failed_when_car_is_not_in_lots(){
         int contain[] ={1,2};
         ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
         Car car = new Car();
@@ -72,7 +81,7 @@ public class ParkingBoyTest {
     }
 
     @Test
-    public void should_park_successfully_when_car_is_out_from_parkingLot1(){
+    public void should_park_successfully_when_car_is_out_from_parkingLots(){
         int contain[] ={1,1};
         ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
         Car car = new Car();
