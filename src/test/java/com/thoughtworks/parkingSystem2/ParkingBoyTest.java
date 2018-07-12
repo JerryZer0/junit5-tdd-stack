@@ -74,4 +74,16 @@ public class ParkingBoyTest {
             fail("It should not throw exception!");
         }
     }
+
+    @Test
+    public void should_return_true_when_the_car_is_the_one_from_lot1(){
+        int contain[] ={2,1};
+        ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
+        Car car = new Car();
+        Receipt receipt1 = parkingBoy.park(car);
+        Receipt receipt2 = parkingBoy.park(new Car());
+        Receipt receipt3 = parkingBoy.park(new Car());
+        assertThat(parkingBoy.parkLotList.get(0).carList.get(receipt1),is(car));
+    }
+
 }
