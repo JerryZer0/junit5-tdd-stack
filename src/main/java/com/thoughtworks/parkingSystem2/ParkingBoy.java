@@ -46,9 +46,10 @@ public class ParkingBoy {
         Car car = new Car();
         for(int i=0;i<parkLotList.size();i++){
             car = parkLotList.get(i).getOutCar(receipt);
-            if(car!=null)break;
+            if(car!=null){
+                break;
+            }
         }
         return car;
     }
-
 }

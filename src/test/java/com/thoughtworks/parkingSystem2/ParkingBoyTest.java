@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.IsNot.not;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class ParkingBoyTest {
@@ -48,6 +49,14 @@ public class ParkingBoyTest {
         Car car = new Car();
         Receipt receipt = parkingBoy.park(car);
         assertThat(parkingBoy.getOutCar(receipt),is(car));
+    }
 
+    @Test
+    public void should_get_out_car_failed_when_car_is_not_in_lot(){
+        int contain[] ={1,2};
+        ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
+        Car car = new Car();
+        Receipt receipt = parkingBoy.park(new Car());
+        assertThat(parkingBoy.getOutCar(receipt),not(car));
     }
 }
