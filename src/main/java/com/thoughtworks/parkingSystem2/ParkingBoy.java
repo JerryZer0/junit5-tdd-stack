@@ -1,23 +1,62 @@
 package com.thoughtworks.parkingSystem2;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ParkingBoy {
 
-    ParkingLot parkLot1;
-    ParkingLot parkLot2;
+    List<ParkingLot> parkLotList = new ArrayList<>();
+    //停车位总量
+    int contain = 0;
 
-    ParkingBoy(int p1,int p2){
-        parkLot1 = new ParkingLot(p1);
-        parkLot2 = new ParkingLot(p2);
+    ParkingBoy(int num, int []p){
+        for(int i=0;i<num;i++){
+            parkLotList.add(new ParkingLot(p[i]));
+            contain += p[i];
+        }
     }
 
-    public void park(Car car) {
+    private int findCarCounts(List<ParkingLot> parkLotList){
+        int number = 0;
+        for(int i=0;i<parkLotList.size();i++){
+            number += parkLotList.get(i).getCarCounts();
+        }
+        return number;
+    }
+
+    public Receipt park(Car car) {
         Receipt r = new Receipt();
-        if(!parkLot1.isFull()){
-            r = parkLot1.park(car);
-        }else if(!parkLot2.isFull()){
-            r = parkLot2.park(car);
+
+        int countCars = findCarCounts(parkLotList);
+        if(countCars<contain){
+            for(int i=0;i<parkLotList.size();i++){
+                if(!parkLotList.get(i).isFull()){
+                    r = parkLotList.get(i).park(car);
+                    parkLotList.get(i).carList.put(r,car);
+                    break;
+                }
+            }
         }else{
             throw new ParkingExcpetion();
         }
+        return r;
     }
+
+//    public Car getOutCar(Receipt receipt) {
+//        Car car = new Car();
+//        if()
+//        return new Car();
+//    }
+
+//    public Receipt getOutTheCar(Receipt receipt) {
+//        Receipt r = new Receipt();
+//        if(!parkLot1.isFull()){
+//            r = parkLot1.park(car);
+//        }else if(!parkLot2.isFull()){
+//            r = parkLot2.park(car);
+//        }else{
+//            throw new ParkingExcpetion();
+//        }
+//        return r;
+//    }
 }
