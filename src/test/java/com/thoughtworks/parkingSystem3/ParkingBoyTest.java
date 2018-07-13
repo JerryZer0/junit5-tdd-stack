@@ -1,10 +1,5 @@
 package com.thoughtworks.parkingSystem3;
 
-import com.thoughtworks.parkingSystem2.Car;
-import com.thoughtworks.parkingSystem2.ParkingBoy;
-import com.thoughtworks.parkingSystem2.ParkingExcpetion;
-import com.thoughtworks.parkingSystem2.ParkingLot;
-import com.thoughtworks.parkingSystem2.Receipt;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
