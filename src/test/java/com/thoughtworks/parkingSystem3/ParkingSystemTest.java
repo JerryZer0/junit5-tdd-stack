@@ -6,9 +6,22 @@ import static org.hamcrest.core.IsNot.not;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class ParkingSystemTest {
+
+    @Test
+    public void should_ask_carID_when_parkingLot_is_not_full(){
+        ParkingSystem parkingSystem = new ParkingSystem();
+
+        ParkingSystemIO parkingSystemIO = mock(ParkingSystemIO.class);
+        when(parkingSystemIO.getOrder()).thenReturn("1");
+
+        boolean order = parkingSystem.getOrder(parkingSystemIO);
+        assertThat(order,is(false));
+        verify(parkingSystemIO.parkingLotIsNotFull());
+    }
 
     @Test
     public void should_return_false_when_input_is_incorrect(){
