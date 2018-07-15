@@ -79,7 +79,7 @@ public class ParkingSystemTest {
         when(io.getReceiptId()).thenReturn("33344444-342");
 
         String receiptId = system.getReceiptId(io);
-//        verify(io).askReceiptId();
+
         assertThat(receiptId,is("33344444-342"));
     }
 

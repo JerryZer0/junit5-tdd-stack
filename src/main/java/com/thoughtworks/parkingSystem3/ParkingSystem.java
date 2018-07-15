@@ -76,30 +76,44 @@ public class ParkingSystem {
             String carId;
             String receiptId;
             if(order.equals("1")){
-                if(parkingSystem.isFull()){
-                    io.parkingLotIsFull();
-                }else{
-                    io.askCarId();
-                    carId = parkingSystem.getCarId(io);
-                    Car car = new Car(carId);
-                    Receipt receipt = parkingSystem.park(car);
-                    io.parkSuccessfully(receipt);
-                }
+                parkCar(io, parkingSystem);
             }else if(order.equals("2")){
-                io.askReceiptId();
-                receiptId = io.getReceiptId();
-                Receipt receipt = new Receipt();
-                receipt.setUuid(receiptId);
-                Car myCar = parkingSystem.getOutCar(receipt);
-                if(myCar == null){
-                    io.getOutCarFailed();
-                }else{
-                    io.getOutCarSuccessfully(myCar);
-                }
+                outCar(io, parkingSystem);
             }
             else{
-                io.remindErrorOrder();
+                incorrectInput(io);
             }
+        }
+    }
+
+    public static void parkCar(ParkingSystemIO io, ParkingSystem parkingSystem) {
+        String carId;
+        if(parkingSystem.isFull()){
+            io.parkingLotIsFull();
+        }else{
+            io.askCarId();
+            carId = parkingSystem.getCarId(io);
+            Car car = new Car(carId);
+            Receipt receipt = parkingSystem.park(car);
+            io.parkSuccessfully(receipt);
+        }
+    }
+
+    public static void incorrectInput(ParkingSystemIO io) {
+        io.remindErrorOrder();
+    }
+
+    public static void outCar(ParkingSystemIO io, ParkingSystem parkingSystem) {
+        String receiptId;
+        io.askReceiptId();
+        receiptId = io.getReceiptId();
+        Receipt receipt = new Receipt();
+        receipt.setUuid(receiptId);
+        Car myCar = parkingSystem.getOutCar(receipt);
+        if(myCar == null){
+            io.getOutCarFailed();
+        }else{
+            io.getOutCarSuccessfully(myCar);
         }
     }
 }
