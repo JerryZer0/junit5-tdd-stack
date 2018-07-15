@@ -1,10 +1,12 @@
 package com.thoughtworks.parkingSystem3;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class ParkingLotTest {
@@ -18,14 +20,17 @@ public class ParkingLotTest {
             fail("It should not throw exception!");
         }
     }
+    
     @Test
+    @DisplayName("throws exception")
     public void should_park_failed_when_the_park_is_full(){
         ParkingLot parkingLot = new ParkingLot(0);
-        try{
-            parkingLot.park(new Car("AS56"));
-        }catch (ParkingExcpetion p){
-            System.out.println("You can not park any more.The park is full!!");
-        }
+        assertThrows(ParkingExcpetion.class,()-> parkingLot.park(new Car("AS56")));
+//        try{
+//            parkingLot.park(new Car("AS56"));
+//        }catch (ParkingExcpetion p){
+//            System.out.println("You can not park any more.The park is full!!");
+//        }
     }
     @Test
     public void should_park_failed_when_the_park_is_full_1(){
