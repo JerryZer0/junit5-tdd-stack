@@ -28,7 +28,7 @@ public class ParkingBoy {
         Receipt r = new Receipt();
 
         int countCars = findCarCounts(parkLotList);
-        if(countCars<contain){
+        if(!isFull()){
             for(int i=0;i<parkLotList.size();i++){
                 if(!parkLotList.get(i).isFull()){
                     r = parkLotList.get(i).park(car);
@@ -37,7 +37,7 @@ public class ParkingBoy {
                 }
             }
         }else{
-            throw new ParkingExcpetion();
+            r = null;
         }
         return r;
     }
