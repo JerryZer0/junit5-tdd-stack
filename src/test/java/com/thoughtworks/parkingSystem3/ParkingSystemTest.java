@@ -1,5 +1,6 @@
 package com.thoughtworks.parkingSystem3;
 
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -67,18 +68,18 @@ public class ParkingSystemTest {
 //    }
 
     @Test
-    public void should_park_successfully_when_parkLot_is_not_full(){
+    public void should_park_successfully_and_return_uuid_of_the_receipt_when_parkLot_is_not_full(){
         int[] size = {1,2};
-        ParkingBoy parkingBoy = new ParkingBoy(2,size);
-        List<ParkingBoy> parkingBoyList = new ArrayList<>();
+//        ParkingBoy parkingBoy = new ParkingBoy(2,size);
+//        List<ParkingBoy> parkingBoyList = new ArrayList<>();
+        ParkingBoy parkingBoy = mock(ParkingBoy.class);
+        Receipt receipt = new Receipt();
+        Car car = new Car("CZ123");
+        when(parkingBoy.park(car)).thenReturn(receipt);
         parkingBoyList.add(parkingBoy);
         ParkingSystem system = new ParkingSystem(parkingBoyList);
-        Car car = new Car("CZ123");
 
-        try{
-            system.park(1,car);
-        }catch (ParkingExcpetion p){
-            fail("It should not throw exception!");
-        }
+        Receipt receipt1 = system.park(1,car);
+        assertThat(receipt1,is(receipt));
     }
 }
