@@ -52,4 +52,11 @@ public class ParkingSystem {
         String receiptId = io.getReceiptId();
         return receiptId;
     }
+
+    public Car getOutCar(ParkingBoy boy, String s) {
+        Receipt receipt = new Receipt();
+        receipt.setUuid(s);
+        Car car = boy.getOutCar(receipt);
+        return car;
+    }
 }

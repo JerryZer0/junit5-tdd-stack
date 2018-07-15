@@ -18,5 +18,9 @@ public class Receipt {
         return uuid;
     }
 
+    public void setUuid(String uuid){
+        this.uuid = uuid;
+    }
+
 
 }

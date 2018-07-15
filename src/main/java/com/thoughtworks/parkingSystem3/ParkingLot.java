@@ -1,11 +1,11 @@
 package com.thoughtworks.parkingSystem3;
 
-import java.util.HashMap;
+import java.util.*;
 
 public class ParkingLot {
 
     private int size;
-    public HashMap<Receipt, Car> carList = new HashMap<>();
+    public HashMap<String, Car> carList = new HashMap<>();
 
     ParkingLot(int numb){
         this.size = numb;
@@ -13,16 +13,17 @@ public class ParkingLot {
     public Receipt park(Car car) {
         Receipt receipt = new Receipt();
         if(size>carList.size()){
-            carList.put(receipt, car);
+            carList.put(receipt.getReceiptId(), car);
         }else{
             throw new ParkingExcpetion();
         }
         return receipt;
     }
 
-    public Car getOutCar(Receipt receipt) {
-        Car car = carList.get(receipt);
-        carList.remove(receipt);
+    public Car getOutCar(String receiptId) {
+
+        Car car = carList.get(receiptId);
+        carList.remove(receiptId);
         return car;
     }
 

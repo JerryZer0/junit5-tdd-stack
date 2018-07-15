@@ -75,8 +75,8 @@ public class ParkingBoyTest {
         ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
 
         Receipt receipt = parkingBoy.park(new Car("AS56"));
-        Receipt receipt12 = null;
-        assertThat(receipt,is(receipt12));
+        Receipt receipt1 = null;
+        assertThat(receipt,is(receipt1));
     }
 
     @Test

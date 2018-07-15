@@ -120,4 +120,17 @@ public class ParkingSystemTest {
         assertThat(receiptId,is("33344444-342"));
     }
 
+    @Test
+    public void should_get_out_the_car_when_receiptId_is_right(){
+        //ParkingSystem parkingSystem = new ParkingSystem();
+        Car car = new Car("234");
+        ParkingBoy boy = mock(ParkingBoy.class);
+        Receipt receipt = new Receipt();
+        when(boy.getOutCar(receipt)).thenReturn(car);
+        Car carOut = system.getOutCar(boy,"33344444-342");
+        assertThat(carOut,is(car));
+    }
+
+
+
 }
