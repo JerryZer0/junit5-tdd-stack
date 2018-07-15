@@ -20,16 +20,19 @@ public class ParkingSystemIO {
         System.out.println("非法指令，请查证后再输");
     }
 
-    public String getCarId() {
+    public void askCarId(){
         System.out.println("请输入车牌号：");
+    }
+
+    public String getCarId() {
         Scanner in = new Scanner(System.in);
         String carId = in.nextLine();
         return carId;
     }
 
-    public void parkSuccessfully(String receiptId) {
+    public void parkSuccessfully(Receipt receipt) {
         System.out.println("停车成功，您的小票是：");
-        System.out.println(receiptId);
+        System.out.println(receipt.getReceiptId());
     }
 
     public void parkingLotIsFull() {
@@ -41,14 +44,13 @@ public class ParkingSystemIO {
     }
 
     public String getReceiptId() {
-        askReceiptId();
         Scanner in = new Scanner(System.in);
         String receiptId = in.nextLine();
         return receiptId;
     }
 
-    public void getOutCarSuccessfully(String carId) {
-        System.out.println("车已取出，您的车牌号是：" + carId);
+    public void getOutCarSuccessfully(Car car) {
+        System.out.println("车已取出，您的车牌号是：" + car.getCarid());
     }
 
     public void askReceiptId(){

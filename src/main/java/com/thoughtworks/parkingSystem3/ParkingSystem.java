@@ -12,13 +12,9 @@ public class ParkingSystem {
         this.parkingBoyList = parkingBoyList;
     }
 
-    public boolean getOrder(ParkingSystemIO io) {
+    public String getOrder(ParkingSystemIO io) {
         String order = io.getOrder();
-        boolean status = false;
-        if(order == "1" || order == "2"){
-            status = true;
-        }
-        return status;
+        return order;
     }
 
     public String getCarId(ParkingSystemIO io) {
@@ -26,13 +22,25 @@ public class ParkingSystem {
         return carId;
     }
 
-    public Receipt park(int parkingBoyId, Car car) {
-        Receipt receipt = parkingBoyList.get(parkingBoyId-1).park(car);
+    public Receipt park(Car car) {
+        Receipt receipt = null;
+        for(int i=0;i<parkingBoyList.size();i++){
+            receipt = parkingBoyList.get(i).park(car);
+            if(receipt!=null){
+                break;
+            }
+        }
         return receipt;
     }
 
-    public boolean isFull(ParkingBoy parkingBoy) {
-        return parkingBoy.isFull();
+    public boolean isFull() {
+        boolean full = true;
+        for(int i=0;i<parkingBoyList.size();i++){
+            if(!parkingBoyList.get(i).isFull()){
+                full = false;
+            }
+        }
+        return full;
     }
 
     public String getReceiptId(ParkingSystemIO io) {
@@ -40,8 +48,14 @@ public class ParkingSystem {
         return receiptId;
     }
 
-    public Car getOutCar(ParkingBoy boy, Receipt receipt) {
-        Car car = boy.getOutCar(receipt);
+    public Car getOutCar(Receipt receipt) {
+        Car car = null;
+        for(int i=0;i<parkingBoyList.size();i++){
+            car = parkingBoyList.get(i).getOutCar(receipt);
+            if(car!=null){
+                break;
+            }
+        }
         return car;
     }
 
@@ -58,10 +72,34 @@ public class ParkingSystem {
         ParkingSystem parkingSystem = new ParkingSystem(parkingBoyList);
         while(true){
             io.systemStarShow();
-
+            String order = parkingSystem.getOrder(io);
+            String carId;
+            String receiptId;
+            if(order.equals("1")){
+                if(parkingSystem.isFull()){
+                    io.parkingLotIsFull();
+                }else{
+                    io.askCarId();
+                    carId = parkingSystem.getCarId(io);
+                    Car car = new Car(carId);
+                    Receipt receipt = parkingSystem.park(car);
+                    io.parkSuccessfully(receipt);
+                }
+            }else if(order.equals("2")){
+                io.askReceiptId();
+                receiptId = io.getReceiptId();
+                Receipt receipt = new Receipt();
+                receipt.setUuid(receiptId);
+                Car myCar = parkingSystem.getOutCar(receipt);
+                if(myCar == null){
+                    io.getOutCarFailed();
+                }else{
+                    io.getOutCarSuccessfully(myCar);
+                }
+            }
+            else{
+                io.remindErrorOrder();
+            }
         }
-
-
     }
-
 }

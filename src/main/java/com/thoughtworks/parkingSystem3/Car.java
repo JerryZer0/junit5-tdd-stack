@@ -7,4 +7,7 @@ public class Car {
         this.id = id;
     }
 
+    public String getCarid() {
+        return id;
+    }
 }

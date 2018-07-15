@@ -29,30 +29,31 @@ public class ParkingSystemTest {
         ParkingSystemIO parkingSystemIO = mock(ParkingSystemIO.class);
         when(parkingSystemIO.getOrder()).thenReturn("343");
 
-        boolean order = system.getOrder(parkingSystemIO);
-        assertThat(order,is(false));
+        String order = system.getOrder(parkingSystemIO);
+        assertThat(order,is("343"));
     }
 
     @Test
-    public void should_return_true_when_input_is_correct(){
+    public void should_return_1_when_input_is_correct(){
         //ParkingSystem parkingSystem = new ParkingSystem();
 
         ParkingSystemIO parkingSystemIO = mock(ParkingSystemIO.class);
         when(parkingSystemIO.getOrder()).thenReturn("1");
 
-        boolean order = system.getOrder(parkingSystemIO);
-        assertThat(order,is(true));
+        String order = system.getOrder(parkingSystemIO);
+        assertThat(order,is("1"));
     }
 
     @Test
     public void should_return_true_when_parkingLot_is_full(){
         int[] size = {0,0};
+        ParkingBoy parkingBoy = mock(ParkingBoy.class);
         parkingBoyList.add(parkingBoy);
         ParkingSystem system = new ParkingSystem(parkingBoyList);
-        ParkingBoy parkingBoy = mock(ParkingBoy.class);
+
         when(parkingBoy.isFull()).thenReturn(true);
 
-        assertThat(system.isFull(parkingBoy),is(true));
+        assertThat(system.isFull(),is(true));
     }
 
     @Test
@@ -66,7 +67,7 @@ public class ParkingSystemTest {
 
         when(parkingBoy.park(car)).thenReturn(null);
 
-        Receipt receipt1 = system.park(1,car);
+        Receipt receipt1 = system.park(car);
         assertThat(receipt1,is(receipt));
     }
 
@@ -102,19 +103,24 @@ public class ParkingSystemTest {
         parkingBoyList.add(parkingBoy);
         ParkingSystem system = new ParkingSystem(parkingBoyList);
 
-        Receipt receipt1 = system.park(1,car);
+        Receipt receipt1 = system.park(car);
         assertThat(receipt1,is(receipt));
     }
 
     @Test
     public void should_get_out_the_car_when_receiptId_is_right(){
         //ParkingSystem parkingSystem = new ParkingSystem();
+        int[] size = {1,2};
+        ParkingBoy boy = mock(ParkingBoy.class);
+        parkingBoyList.add(boy);
+        ParkingSystem system = new ParkingSystem(parkingBoyList);
+
         Car car = new Car("234");
         Receipt receipt = new Receipt();
         receipt.setUuid("33344444-342");
-        ParkingBoy boy = mock(ParkingBoy.class);
+
         when(boy.getOutCar(receipt)).thenReturn(car);
-        Car carOut = system.getOutCar(boy,receipt);
+        Car carOut = system.getOutCar(receipt);
         assertThat(carOut,is(car));
     }
 
@@ -126,7 +132,7 @@ public class ParkingSystemTest {
         receipt.setUuid("33344444-342");
         ParkingBoy boy = mock(ParkingBoy.class);
         when(boy.getOutCar(receipt)).thenReturn(car);
-        Car carOut = system.getOutCar(boy,new Receipt());
+        Car carOut = system.getOutCar(new Receipt());
         assertThat(carOut,not(car));
     }
 
