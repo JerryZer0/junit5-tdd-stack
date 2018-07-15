@@ -43,7 +43,7 @@ public class ParkingBoy {
     }
 
     public Car getOutCar(Receipt receipt) {
-        Car car = new Car();
+        Car car = new Car("AS32");
         for(int i=0;i<parkLotList.size();i++){
             car = parkLotList.get(i).getOutCar(receipt);
             if(car!=null){

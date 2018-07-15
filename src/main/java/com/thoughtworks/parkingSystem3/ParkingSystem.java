@@ -1,11 +1,16 @@
 package com.thoughtworks.parkingSystem3;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ParkingSystem {
 
+    List<ParkingBoy> parkingBoyList = new ArrayList<>();
 
-
+    ParkingSystem(List<ParkingBoy> parkingBoyList){
+        this.parkingBoyList = parkingBoyList;
+    }
 
 
 
@@ -27,5 +32,15 @@ public class ParkingSystem {
             status = true;
         }
         return status;
+    }
+
+    public String getCarId(ParkingSystemIO io) {
+        String carId = io.getCarId();
+        return carId;
+    }
+
+    public Receipt park(int parkingBoyId, Car car) {
+        Receipt receipt = parkingBoyList.get(parkingBoyId-1).park(car);
+        return receipt;
     }
 }

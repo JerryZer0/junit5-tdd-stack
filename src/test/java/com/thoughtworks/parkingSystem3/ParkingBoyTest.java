@@ -19,7 +19,7 @@ public class ParkingBoyTest {
 
         try{
             //when(parkingLot.park(new Car())).thenReturn(receipt);
-            parkingBoy.park(new Car());
+            parkingBoy.park(new Car("AS56"));
         }catch (ParkingExcpetion p){
             fail("It should not throw exception!");
         }
@@ -29,7 +29,7 @@ public class ParkingBoyTest {
     public void should_get_out_car_successfully_when_car_is_in_the_only_lot(){
         int contain[] ={2};
         ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
-        Car car = new Car();
+        Car car = new Car("AS56");
         Receipt receipt = new Receipt();
         //ParkingLot parkingLot = mock(ParkingLot.class);
         //when(parkingLot.park(car)).thenReturn(receipt);
@@ -45,7 +45,7 @@ public class ParkingBoyTest {
         int contain[] ={1,2};
         ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
         try{
-            parkingBoy.park(new Car());
+            parkingBoy.park(new Car("AS56"));
         }catch (ParkingExcpetion p){
             fail("It should not throw exception!");
         }
@@ -56,7 +56,7 @@ public class ParkingBoyTest {
         int contain[] ={0,2};
         ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
         try{
-            parkingBoy.park(new Car());
+            parkingBoy.park(new Car("AS56"));
         }catch (ParkingExcpetion p){
             fail("It should not throw exception!");
         }
@@ -67,7 +67,7 @@ public class ParkingBoyTest {
         int contain[] ={0,0};
         ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
         try{
-            parkingBoy.park(new Car());
+            parkingBoy.park(new Car("AS56"));
         }catch (ParkingExcpetion p){
             System.err.println("All parkingLots are full,you can't park any more!!!");
         }
@@ -77,7 +77,7 @@ public class ParkingBoyTest {
     public void should_get_out_car_successfully_when_car_is_in_lots(){
         int contain[] ={1,2};
         ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
-        Car car = new Car();
+        Car car = new Car("AS56");
         Receipt receipt = parkingBoy.park(car);
         assertThat(parkingBoy.getOutCar(receipt),is(car));
     }
@@ -86,8 +86,8 @@ public class ParkingBoyTest {
     public void should_get_out_car_failed_when_car_is_not_in_lots(){
         int contain[] ={1,2};
         ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
-        Car car = new Car();
-        Receipt receipt = parkingBoy.park(new Car());
+        Car car = new Car("AS56");
+        Receipt receipt = parkingBoy.park(new Car("ASD56"));
         assertThat(parkingBoy.getOutCar(receipt),not(car));
     }
 
@@ -95,9 +95,9 @@ public class ParkingBoyTest {
     public void should_park_successfully_when_car_is_out_from_parkingLots(){
         int contain[] ={1,1};
         ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
-        Car car = new Car();
+        Car car = new Car("AS56");
         Receipt receipt1 = parkingBoy.park(car);
-        Receipt receipt2 = parkingBoy.park(new Car());
+        Receipt receipt2 = parkingBoy.park(new Car("ASs56"));
         car = parkingBoy.getOutCar(receipt1);
         try{
             parkingBoy.park(car);
@@ -110,10 +110,10 @@ public class ParkingBoyTest {
     public void should_return_true_when_the_car_is_the_one_from_lot1(){
         int contain[] ={2,1};
         ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
-        Car car = new Car();
+        Car car = new Car("AS56");
         Receipt receipt1 = parkingBoy.park(car);
-        Receipt receipt2 = parkingBoy.park(new Car());
-        Receipt receipt3 = parkingBoy.park(new Car());
+        Receipt receipt2 = parkingBoy.park(new Car("AS576"));
+        Receipt receipt3 = parkingBoy.park(new Car("AS576"));
         assertThat(parkingBoy.parkLotList.get(0).carList.get(receipt1),is(car));
     }
 

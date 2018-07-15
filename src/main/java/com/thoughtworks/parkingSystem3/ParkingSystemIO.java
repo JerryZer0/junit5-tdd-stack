@@ -20,10 +20,11 @@ public class ParkingSystemIO {
         System.out.println("非法指令，请查证后再输");
     }
 
-    public void parkingLotIsNotFull() {
+    public String getCarId() {
         System.out.println("请输入车牌号：");
         Scanner in = new Scanner(System.in);
         String carId = in.nextLine();
+        return carId;
     }
 
     public void parkSuccessfully(String receiptId) {
