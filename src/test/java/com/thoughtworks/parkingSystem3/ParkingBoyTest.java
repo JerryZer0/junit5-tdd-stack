@@ -13,7 +13,7 @@ public class ParkingBoyTest {
     @Test
     public void should_park_successfully_when_parking_lot_is_not_full(){
         int contain[] ={2};
-        ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
+        ParkingBoy parkingBoy = new ParkingBoy(contain);
         Receipt receipt = new Receipt();
         ParkingLot parkingLot = mock(ParkingLot.class);
 
@@ -28,7 +28,7 @@ public class ParkingBoyTest {
     @Test
     public void should_get_out_car_successfully_when_car_is_in_the_only_lot(){
         int contain[] ={2};
-        ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
+        ParkingBoy parkingBoy = new ParkingBoy(contain);
         Car car = new Car("AS56");
         Receipt receipt = new Receipt();
         //ParkingLot parkingLot = mock(ParkingLot.class);
@@ -43,7 +43,7 @@ public class ParkingBoyTest {
     @Test
     public void should_park_successfully_when_parking_lot1_is_not_full(){
         int contain[] ={1,2};
-        ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
+        ParkingBoy parkingBoy = new ParkingBoy(contain);
         try{
             parkingBoy.park(new Car("AS56"));
         }catch (ParkingExcpetion p){
@@ -54,14 +54,14 @@ public class ParkingBoyTest {
     @Test
     public void should_return_true_when_parking_lot_is_full(){
         int contain[] ={0,0};
-        ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
+        ParkingBoy parkingBoy = new ParkingBoy(contain);
         assertThat(parkingBoy.isFull(),is(true));
     }
 
     @Test
     public void should_park_successfully_when_parking_lot1_is_full_and_parking_lot2_is_not_full(){
         int contain[] ={0,2};
-        ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
+        ParkingBoy parkingBoy = new ParkingBoy(contain);
         try{
             parkingBoy.park(new Car("AS56"));
         }catch (ParkingExcpetion p){
@@ -72,7 +72,7 @@ public class ParkingBoyTest {
     @Test
     public void should_park_failed_when_parking_lot1_is_full_and_parking_lot2_is__full(){
         int contain[] ={0,0};
-        ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
+        ParkingBoy parkingBoy = new ParkingBoy(contain);
 
         Receipt receipt = parkingBoy.park(new Car("AS56"));
         Receipt receipt1 = null;
@@ -82,7 +82,7 @@ public class ParkingBoyTest {
     @Test
     public void should_get_out_car_successfully_when_car_is_in_lots(){
         int contain[] ={1,2};
-        ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
+        ParkingBoy parkingBoy = new ParkingBoy(contain);
         Car car = new Car("AS56");
         Receipt receipt = parkingBoy.park(car);
         assertThat(parkingBoy.getOutCar(receipt),is(car));
@@ -91,7 +91,7 @@ public class ParkingBoyTest {
     @Test
     public void should_get_out_car_failed_when_car_is_not_in_lots(){
         int contain[] ={1,2};
-        ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
+        ParkingBoy parkingBoy = new ParkingBoy(contain);
         Car car = new Car("AS56");
         Receipt receipt = parkingBoy.park(new Car("ASD56"));
         assertThat(parkingBoy.getOutCar(receipt),not(car));
@@ -100,7 +100,7 @@ public class ParkingBoyTest {
     @Test
     public void should_park_successfully_when_car_is_out_from_parkingLots(){
         int contain[] ={1,1};
-        ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
+        ParkingBoy parkingBoy = new ParkingBoy(contain);
         Car car = new Car("AS56");
         Receipt receipt1 = parkingBoy.park(car);
         Receipt receipt2 = parkingBoy.park(new Car("ASs56"));
@@ -115,7 +115,7 @@ public class ParkingBoyTest {
     @Test
     public void should_return_true_when_the_car_is_the_one_from_lot1(){
         int contain[] ={2,1};
-        ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
+        ParkingBoy parkingBoy = new ParkingBoy(contain);
         Car car = new Car("AS56");
         Receipt receipt1 = parkingBoy.park(car);
         Receipt receipt2 = parkingBoy.park(new Car("AS576"));

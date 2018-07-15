@@ -9,8 +9,8 @@ public class ParkingBoy {
     //停车位总量
     int contain = 0;
 
-    ParkingBoy(int num, int []p){
-        for(int i=0;i<num;i++){
+    ParkingBoy(int []p){
+        for(int i=0;i<p.length;i++){
             parkLotList.add(new ParkingLot(p[i]));
             contain += p[i];
         }

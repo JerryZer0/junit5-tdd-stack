@@ -12,19 +12,6 @@ public class ParkingSystem {
         this.parkingBoyList = parkingBoyList;
     }
 
-
-
-
-
-
-//    public static void main(String []args){
-//
-//        ParkingSystemIO parkingSystemIO = new ParkingSystemIO();
-//        parkingSystemIO.systemStarShow();
-//
-//
-//    }
-
     public boolean getOrder(ParkingSystemIO io) {
         String order = io.getOrder();
         boolean status = false;
@@ -57,4 +44,24 @@ public class ParkingSystem {
         Car car = boy.getOutCar(receipt);
         return car;
     }
+
+    public static void main(String []args){
+
+        ParkingSystemIO io = new ParkingSystemIO();
+//        List<ParkingLot> parkingLotList = new ArrayList<>();
+//        parkingLotList.add(new ParkingLot(2));
+//        parkingLotList.add(new ParkingLot(1));
+        int[] parkingLotList = {1,2};
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
+        List<ParkingBoy> parkingBoyList = new ArrayList<>();
+        parkingBoyList.add(parkingBoy);
+        ParkingSystem parkingSystem = new ParkingSystem(parkingBoyList);
+        while(true){
+            io.systemStarShow();
+
+        }
+
+
+    }
+
 }
