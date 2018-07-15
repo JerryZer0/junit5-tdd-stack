@@ -53,9 +53,7 @@ public class ParkingSystem {
         return receiptId;
     }
 
-    public Car getOutCar(ParkingBoy boy, String s) {
-        Receipt receipt = new Receipt();
-        receipt.setUuid(s);
+    public Car getOutCar(ParkingBoy boy, Receipt receipt) {
         Car car = boy.getOutCar(receipt);
         return car;
     }

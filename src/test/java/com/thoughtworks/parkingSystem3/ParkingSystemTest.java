@@ -124,11 +124,24 @@ public class ParkingSystemTest {
     public void should_get_out_the_car_when_receiptId_is_right(){
         //ParkingSystem parkingSystem = new ParkingSystem();
         Car car = new Car("234");
-        ParkingBoy boy = mock(ParkingBoy.class);
         Receipt receipt = new Receipt();
+        receipt.setUuid("33344444-342");
+        ParkingBoy boy = mock(ParkingBoy.class);
         when(boy.getOutCar(receipt)).thenReturn(car);
-        Car carOut = system.getOutCar(boy,"33344444-342");
+        Car carOut = system.getOutCar(boy,receipt);
         assertThat(carOut,is(car));
+    }
+
+    @Test
+    public void should_get_out_the_car_failed_when_receiptId_is_wrong(){
+        //ParkingSystem parkingSystem = new ParkingSystem();
+        Car car = new Car("234");
+        Receipt receipt = new Receipt();
+        receipt.setUuid("33344444-342");
+        ParkingBoy boy = mock(ParkingBoy.class);
+        when(boy.getOutCar(receipt)).thenReturn(car);
+        Car carOut = system.getOutCar(boy,new Receipt());
+        assertThat(carOut,not(car));
     }
 
 

@@ -120,7 +120,7 @@ public class ParkingBoyTest {
         Receipt receipt1 = parkingBoy.park(car);
         Receipt receipt2 = parkingBoy.park(new Car("AS576"));
         Receipt receipt3 = parkingBoy.park(new Car("AS576"));
-        assertThat(parkingBoy.parkLotList.get(0).carList.get(receipt1),is(car));
+        assertThat(parkingBoy.getOutCar(receipt1),is(car));
     }
 
 }
