@@ -52,4 +52,8 @@ public class ParkingBoy {
         }
         return car;
     }
+
+    public boolean isFull(){
+        return contain == findCarCounts(parkLotList);
+    }
 }

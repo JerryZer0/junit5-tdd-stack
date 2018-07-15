@@ -52,6 +52,13 @@ public class ParkingBoyTest {
     }
 
     @Test
+    public void should_return_true_when_parking_lot_is_full(){
+        int contain[] ={0,0};
+        ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
+        assertThat(parkingBoy.isFull(),is(true));
+    }
+
+    @Test
     public void should_park_successfully_when_parking_lot1_is_full_and_parking_lot2_is_not_full(){
         int contain[] ={0,2};
         ParkingBoy parkingBoy = new ParkingBoy(contain.length,contain);
