@@ -81,15 +81,14 @@ public class ParkingSystemTest {
         assertThat(receipt1,is(receipt));
     }
 
-//    @Test
-//    public void should_return_true_when_given_1_and_parkingLot_is_full(){
-//        int[] size = {0,0};
-//        Car car = new Car("CZ123");
-//        parkingBoyList.add(parkingBoy);
-//        ParkingSystem system = new ParkingSystem(parkingBoyList);
-//        ParkingBoy parkingBoy = mock(ParkingBoy.class);
-//        when(parkingBoy.isFull()).thenReturn(true);
-//
-//        assertThat(system.isFull,is(true));
-//    }
+    @Test
+    public void should_return_true_when_given_1_and_parkingLot_is_full(){
+        int[] size = {0,0};
+        parkingBoyList.add(parkingBoy);
+        ParkingSystem system = new ParkingSystem(parkingBoyList);
+        ParkingBoy parkingBoy = mock(ParkingBoy.class);
+        when(parkingBoy.isFull()).thenReturn(true);
+
+        assertThat(system.isFull(parkingBoy),is(true));
+    }
 }

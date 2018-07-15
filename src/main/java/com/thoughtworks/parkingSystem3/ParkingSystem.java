@@ -43,4 +43,8 @@ public class ParkingSystem {
         Receipt receipt = parkingBoyList.get(parkingBoyId-1).park(car);
         return receipt;
     }
+
+    public boolean isFull(ParkingBoy parkingBoy) {
+        return parkingBoy.isFull();
+    }
 }
