@@ -114,13 +114,19 @@ public class ParkingBoyTest {
 
     @Test
     public void should_return_true_when_the_car_is_the_one_from_lot1(){
-        int contain[] ={2,1};
+        int contain[] ={1,1};
         ParkingBoy parkingBoy = new ParkingBoy(contain);
         Car car = new Car("AS56");
         Receipt receipt1 = parkingBoy.park(car);
         Receipt receipt2 = parkingBoy.park(new Car("AS576"));
-        Receipt receipt3 = parkingBoy.park(new Car("AS576"));
-        assertThat(parkingBoy.getOutCar(receipt1),is(car));
+        Car car1 = parkingBoy.getOutCar(receipt1);
+
+        try {
+            Receipt receipt3 = parkingBoy.park(new Car("AS576"));
+        }catch (ParkingExcpetion e){
+            fail("It should not throw exception!");
+        }
+        assertThat(parkingBoy.isFull(),is(true));
     }
 
 }

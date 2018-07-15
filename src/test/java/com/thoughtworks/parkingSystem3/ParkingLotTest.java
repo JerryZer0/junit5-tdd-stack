@@ -20,7 +20,7 @@ public class ParkingLotTest {
             fail("It should not throw exception!");
         }
     }
-    
+
     @Test
     @DisplayName("throws exception")
     public void should_park_failed_when_the_park_is_full(){
@@ -36,12 +36,13 @@ public class ParkingLotTest {
     public void should_park_failed_when_the_park_is_full_1(){
         ParkingLot parkingLot = new ParkingLot(1);
         parkingLot.park(new Car("AS56"));
-        try{
-            parkingLot.park(new Car("AS567"));
-
-        }catch (ParkingExcpetion p){
-            System.out.println("You can not park any more.The park is full!!");
-        }
+        assertThrows(ParkingExcpetion.class,()-> parkingLot.park(new Car("AS562")));
+//        try{
+//            parkingLot.park(new Car("AS567"));
+//
+//        }catch (ParkingExcpetion p){
+//            System.out.println("You can not park any more.The park is full!!");
+//        }
     }
 
     @Test
