@@ -47,4 +47,9 @@ public class ParkingSystem {
     public boolean isFull(ParkingBoy parkingBoy) {
         return parkingBoy.isFull();
     }
+
+    public String getReceiptId(ParkingSystemIO io) {
+        String receiptId = io.getReceiptId();
+        return receiptId;
+    }
 }

@@ -83,6 +83,18 @@ public class ParkingSystemTest {
     }
 
     @Test
+    public void should_ask_carID_when_parkingLot_is_not_full(){
+        //ParkingSystem parkingSystem = new ParkingSystem();
+
+        ParkingSystemIO parkingSystemIO = mock(ParkingSystemIO.class);
+        when(parkingSystemIO.getCarId()).thenReturn("CZ123");
+
+        String carId = system.getCarId(parkingSystemIO);
+        assertThat(carId,is("CZ123"));
+    }
+
+
+    @Test
     public void should_park_successfully_and_return_uuid_of_the_receipt_when_parkingLot_is_not_full_and_order_is_1(){
         int[] size = {1,2};
         ParkingBoy parkingBoy = mock(ParkingBoy.class);
@@ -97,13 +109,15 @@ public class ParkingSystemTest {
     }
 
     @Test
-    public void should_ask_carID_when_parkingLot_is_not_full(){
+    public void should_ask_receiptID_when_order_is_2(){
         //ParkingSystem parkingSystem = new ParkingSystem();
 
-        ParkingSystemIO parkingSystemIO = mock(ParkingSystemIO.class);
-        when(parkingSystemIO.getCarId()).thenReturn("CZ123");
+        ParkingSystemIO io = mock(ParkingSystemIO.class);
+        when(io.getReceiptId()).thenReturn("33344444-342");
 
-        String carId = system.getCarId(parkingSystemIO);
-        assertThat(carId,is("CZ123"));
+        String receiptId = system.getReceiptId(io);
+//        verify(io).askReceiptId();
+        assertThat(receiptId,is("33344444-342"));
     }
+
 }

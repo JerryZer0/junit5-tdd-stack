@@ -40,7 +40,18 @@ public class ParkingSystemIO {
         System.out.println("非法小票，无法取出车，请查证后再输");
     }
 
+    public String getReceiptId() {
+        askReceiptId();
+        Scanner in = new Scanner(System.in);
+        String receiptId = in.nextLine();
+        return receiptId;
+    }
+
     public void getOutCarSuccessfully(String carId) {
         System.out.println("车已取出，您的车牌号是：" + carId);
+    }
+
+    public void askReceiptId(){
+        System.out.println("请输入小票编号：");
     }
 }
