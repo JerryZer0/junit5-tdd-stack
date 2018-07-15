@@ -5,55 +5,56 @@ import java.util.List;
 
 public class ParkingBoy {
 
-    List<ParkingLot> parkLotList = new ArrayList<>();
+    List<ParkingLot> parkingLotList = new ArrayList<>();
     //停车位总量
-    int contain = 0;
 
-    ParkingBoy(int []p){
-        for(int i=0;i<p.length;i++){
-            parkLotList.add(new ParkingLot(p[i]));
-            contain += p[i];
-        }
+    public int getContain() {
+        int count = 0;
+        for (int i = 0; i < parkingLotList.size(); i++)
+            count += parkingLotList.get(i).getSize();
+        return count;
     }
 
-    private int findCarCounts(List<ParkingLot> parkLotList){
+    ParkingBoy(List<ParkingLot> parkingLotList) {
+        this.parkingLotList = parkingLotList;
+    }
+
+    private int findCarCounts() {
         int number = 0;
-        for(int i=0;i<parkLotList.size();i++){
-            number += parkLotList.get(i).getCarCounts();
+        for (ParkingLot parkingLot : parkingLotList) {
+            number += parkingLot.getCarCounts();
         }
         return number;
     }
 
     public Receipt park(Car car) {
-        Receipt r = new Receipt();
+        Receipt r = null;
 
-        int countCars = findCarCounts(parkLotList);
-        if(!isFull()){
-            for(int i=0;i<parkLotList.size();i++){
-                if(!parkLotList.get(i).isFull()){
-                    r = parkLotList.get(i).park(car);
-                    parkLotList.get(i).carList.put(r.getReceiptId(),car);
-                    break;
-                }
+        for (ParkingLot parkingLot : parkingLotList) {
+            if (!parkingLot.isFull()) {
+                r = parkingLot.park(car);
+                break;
             }
-        }else{
-            r = null;
         }
         return r;
     }
 
     public Car getOutCar(Receipt receipt) {
-        Car car = new Car("AS32");
-        for(int i=0;i<parkLotList.size();i++){
-            car = parkLotList.get(i).getOutCar(receipt.getReceiptId());
-            if(car!=null){
+        Car car = null;
+        for (ParkingLot parkingLot : parkingLotList) {
+            car = parkingLot.getOutCar(receipt.getReceiptId());
+            if (car != null) {
                 break;
             }
         }
         return car;
     }
 
-    public boolean isFull(){
-        return contain == findCarCounts(parkLotList);
+    public boolean isFull() {
+        boolean key = false;
+        for(ParkingLot parkingLot:parkingLotList){
+            key = key || parkingLot.isFull();
+        }
+        return key;
     }
 }

@@ -20,7 +20,7 @@ public class ParkingSystemIO {
         System.out.println("非法指令，请查证后再输");
     }
 
-    public void askCarId(){
+    public void askCarId() {
         System.out.println("请输入车牌号：");
     }
 
@@ -53,7 +53,7 @@ public class ParkingSystemIO {
         System.out.println("车已取出，您的车牌号是：" + car.getCarid());
     }
 
-    public void askReceiptId(){
+    public void askReceiptId() {
         System.out.println("请输入小票编号：");
     }
 }

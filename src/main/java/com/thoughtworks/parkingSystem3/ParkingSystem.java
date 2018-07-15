@@ -8,7 +8,7 @@ public class ParkingSystem {
 
     List<ParkingBoy> parkingBoyList = new ArrayList<>();
 
-    ParkingSystem(List<ParkingBoy> parkingBoyList){
+    ParkingSystem(List<ParkingBoy> parkingBoyList) {
         this.parkingBoyList = parkingBoyList;
     }
 
@@ -24,9 +24,9 @@ public class ParkingSystem {
 
     public Receipt park(Car car) {
         Receipt receipt = null;
-        for(int i=0;i<parkingBoyList.size();i++){
+        for (int i = 0; i < parkingBoyList.size(); i++) {
             receipt = parkingBoyList.get(i).park(car);
-            if(receipt!=null){
+            if (receipt != null) {
                 break;
             }
         }
@@ -35,8 +35,8 @@ public class ParkingSystem {
 
     public boolean isFull() {
         boolean full = true;
-        for(int i=0;i<parkingBoyList.size();i++){
-            if(!parkingBoyList.get(i).isFull()){
+        for (int i = 0; i < parkingBoyList.size(); i++) {
+            if (!parkingBoyList.get(i).isFull()) {
                 full = false;
             }
         }
@@ -50,37 +50,36 @@ public class ParkingSystem {
 
     public Car getOutCar(Receipt receipt) {
         Car car = null;
-        for(int i=0;i<parkingBoyList.size();i++){
+        for (int i = 0; i < parkingBoyList.size(); i++) {
             car = parkingBoyList.get(i).getOutCar(receipt);
-            if(car!=null){
+            if (car != null) {
                 break;
             }
         }
         return car;
     }
 
-    public static void main(String []args){
+    public static void main(String[] args) {
 
         ParkingSystemIO io = new ParkingSystemIO();
-//        List<ParkingLot> parkingLotList = new ArrayList<>();
-//        parkingLotList.add(new ParkingLot(2));
-//        parkingLotList.add(new ParkingLot(1));
-        int[] parkingLotList = {1,2};
+        List<ParkingLot> parkingLotList = new ArrayList<>();
+        parkingLotList.add(new ParkingLot(2));
+        parkingLotList.add(new ParkingLot(1));
+
         ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
         List<ParkingBoy> parkingBoyList = new ArrayList<>();
         parkingBoyList.add(parkingBoy);
         ParkingSystem parkingSystem = new ParkingSystem(parkingBoyList);
-        while(true){
+        while (true) {
             io.systemStarShow();
             String order = parkingSystem.getOrder(io);
             String carId;
             String receiptId;
-            if(order.equals("1")){
+            if (order.equals("1")) {
                 parkCar(io, parkingSystem);
-            }else if(order.equals("2")){
+            } else if (order.equals("2")) {
                 outCar(io, parkingSystem);
-            }
-            else{
+            } else {
                 incorrectInput(io);
             }
         }
@@ -88,9 +87,9 @@ public class ParkingSystem {
 
     public static void parkCar(ParkingSystemIO io, ParkingSystem parkingSystem) {
         String carId;
-        if(parkingSystem.isFull()){
+        if (parkingSystem.isFull()) {
             io.parkingLotIsFull();
-        }else{
+        } else {
             io.askCarId();
             carId = parkingSystem.getCarId(io);
             Car car = new Car(carId);
@@ -110,9 +109,9 @@ public class ParkingSystem {
         Receipt receipt = new Receipt();
         receipt.setUuid(receiptId);
         Car myCar = parkingSystem.getOutCar(receipt);
-        if(myCar == null){
+        if (myCar == null) {
             io.getOutCarFailed();
-        }else{
+        } else {
             io.getOutCarSuccessfully(myCar);
         }
     }

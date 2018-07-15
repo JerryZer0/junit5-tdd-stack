@@ -7,14 +7,15 @@ public class ParkingLot {
     private int size;
     public HashMap<String, Car> carList = new HashMap<>();
 
-    ParkingLot(int numb){
-        this.size = numb;
+    ParkingLot(int size) {
+        this.size = size;
     }
+
     public Receipt park(Car car) {
         Receipt receipt = new Receipt();
-        if(size>carList.size()){
+        if (size > carList.size()) {
             carList.put(receipt.getReceiptId(), car);
-        }else{
+        } else {
             throw new ParkingExcpetion();
         }
         return receipt;
@@ -31,11 +32,11 @@ public class ParkingLot {
         return size == carList.size();
     }
 
-    public int getSize(){
+    public int getSize() {
         return this.size;
     }
 
-    public int getCarCounts(){
+    public int getCarCounts() {
         return carList.size();
     }
 }

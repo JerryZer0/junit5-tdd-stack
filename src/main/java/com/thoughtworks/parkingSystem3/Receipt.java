@@ -6,19 +6,18 @@ public class Receipt {
     private int parkingLot;
     private String uuid = UUID.randomUUID().toString();
 
-    Receipt(){
+    Receipt() {};
 
-    };
-    Receipt(int numb){
+    Receipt(int numb) {
 
         parkingLot = numb;
     }
 
-    public String getReceiptId(){
+    public String getReceiptId() {
         return uuid;
     }
 
-    public void setUuid(String uuid){
+    public void setUuid(String uuid) {
         this.uuid = uuid;
     }
 
