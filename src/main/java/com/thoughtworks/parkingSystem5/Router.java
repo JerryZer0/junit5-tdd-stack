@@ -114,9 +114,10 @@ public class Router {
                 manageController.addParkingLot();
                 this.setCurrentPage(ADD_LOT_PAGE);
                 break;
-//            case "3":
-//                this.setCurrentPage(manageController.unparkOperation());
-//                break;
+            case "3":
+                manageController.removeParkingLot();
+                this.setCurrentPage(REMOVE_LOT_PAGE);
+                break;
             default:
                 parkingController.wrongOperation();
                 this.setCurrentPage(OPERATION_PAGE);
