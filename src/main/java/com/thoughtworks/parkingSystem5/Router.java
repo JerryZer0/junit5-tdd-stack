@@ -64,7 +64,10 @@ public class Router {
             case CHECK_LOT_PAGE:
                 managePage(request);
                 break;
-
+            case ADD_LOT_PAGE:
+                manageController.addParkingLotOperation(request);
+                this.setCurrentPage(CHOSE_OPERATION_PAGE);
+                break;
 
         }
     }
@@ -107,9 +110,10 @@ public class Router {
                 manageController.shouLotInfo();
                 this.setCurrentPage(CHOSE_OPERATION_PAGE);
                 break;
-//            case "2":
-//                this.setCurrentPage(manageController.unparkOperation());
-//                break;
+            case "2":
+                manageController.addParkingLot();
+                this.setCurrentPage(ADD_LOT_PAGE);
+                break;
 //            case "3":
 //                this.setCurrentPage(manageController.unparkOperation());
 //                break;

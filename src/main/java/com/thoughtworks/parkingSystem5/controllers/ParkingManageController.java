@@ -1,5 +1,6 @@
 package com.thoughtworks.parkingSystem5.controllers;
 
+import com.thoughtworks.parkingSystem5.domain.ParkingLot;
 import com.thoughtworks.parkingSystem5.domain.Request;
 import com.thoughtworks.parkingSystem5.domain.Response;
 import com.thoughtworks.parkingSystem5.domain.ParkingBoy;
@@ -67,5 +68,29 @@ public class ParkingManageController implements BaseController {
     public void shouLotInfo() {
         ParkingBoy parkingBoy = parkingBoyList.get(0);
         response.send(parkingBoy.lotInfo());
+    }
+
+    public void addParkingLotOperation(Request request) {
+        boolean key = true;
+        String str = request.getCommand();
+        if(!str.substring(0,1).equals("（"))
+            key = false;
+        if(!str.substring(str.length() - 1,str.length()).equals("）"))
+            key = false;
+        String info = str.substring(1, str.length() - 1);
+        String []baseInfo = info.split("，");
+        int count = -1;
+        try {
+            count = Integer.parseInt(baseInfo[1]);
+        }catch (Exception e){
+            key = false;
+        }
+        if(key && count > 0){
+            ParkingLot parkingLot = new ParkingLot(baseInfo[0],count);
+            parkingBoyList.get(0).addParkingLot(parkingLot);
+            response.send("停车场添加成功！");
+        }else{
+            response.send("输入有误");
+        }
     }
 }

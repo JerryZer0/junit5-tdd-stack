@@ -12,6 +12,10 @@ public class ParkingLot {
     public ParkingLot(int size) {
         this.size = size;
     }
+    public ParkingLot(String name, int size) {
+        this.name = name;
+        this.size = size;
+    }
 
     public Receipt park(Car car) {
         Receipt receipt = new Receipt();

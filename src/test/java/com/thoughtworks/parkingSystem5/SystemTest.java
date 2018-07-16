@@ -87,4 +87,33 @@ public class SystemTest {
         verify(manageController).shouLotInfo();
         assertThat(router.getCurrentPage(),is("choseOperationPage"));
     }
+
+    @Test
+    public void should_in_manageController_addParkingLot_and_currentPage_is_addLotPage_when_in_2_and_input_is_2(){
+        Request request = mock(Request.class);
+        Response response = mock(Response.class);
+        ParkingController controller = mock(ParkingController.class);
+        ParkingManageController manageController = mock(ParkingManageController.class);
+        String currentPage = "checkLotPage";
+        Router router = new Router(controller,manageController, currentPage);
+
+        when(request.getCommand()).thenReturn("2");
+        router.checkCurrentPage(request);
+        verify(manageController).addParkingLot();
+        assertThat(router.getCurrentPage(),is("addLotPage"));
+    }
+    @Test
+    public void should_in_manageController_addParkingLotOperation_and_currentPage_is_choseOperationPage_when_information_is_right(){
+        Request request = mock(Request.class);
+        Response response = mock(Response.class);
+        ParkingController controller = mock(ParkingController.class);
+        ParkingManageController manageController = mock(ParkingManageController.class);
+        String currentPage = "addLotPage";
+        Router router = new Router(controller,manageController, currentPage);
+
+        when(request.getCommand()).thenReturn("addLotPage");
+        router.checkCurrentPage(request);
+        verify(manageController).addParkingLotOperation(request);
+        assertThat(router.getCurrentPage(),is("choseOperationPage"));
+    }
 }

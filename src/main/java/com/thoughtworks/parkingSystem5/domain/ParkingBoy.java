@@ -28,6 +28,7 @@ public class ParkingBoy {
     }
 
     public void addParkingLot(ParkingLot parkingLot){
+        parkingLot.setId(String.format("%03d", parkingLotList.size()+1));
         parkingLotList.add(parkingLot);
     }
 
