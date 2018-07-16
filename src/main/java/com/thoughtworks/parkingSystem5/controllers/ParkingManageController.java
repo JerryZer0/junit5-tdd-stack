@@ -63,4 +63,9 @@ public class ParkingManageController implements BaseController {
         response.send("非法指令，请查证后再输");
         getRootMainPage();
     }
+
+    public void shouLotInfo() {
+        ParkingBoy parkingBoy = parkingBoyList.get(0);
+        response.send(parkingBoy.lotInfo());
+    }
 }

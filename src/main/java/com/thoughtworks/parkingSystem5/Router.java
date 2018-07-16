@@ -40,9 +40,7 @@ public class Router {
     public void checkCurrentPage(Request request) {
 
         switch (currentPage) {
-//            case "mainPage":
-//                getRootMainPage();
-//                break;
+
             case CHOSE_OPERATION_PAGE:
                 choseOperation(request);
                 break;
@@ -63,14 +61,15 @@ public class Router {
                 manageController.wrongOperation();
                 this.setCurrentPage(CHOSE_OPERATION_PAGE);
                 break;
-
-
+            case CHECK_LOT_PAGE:
+                managePage(request);
+                break;
 
 
         }
     }
 
-    public void choseOperation(Request request){
+    public void choseOperation(Request request) {
         switch (request.getCommand()) {
             case "1":
                 parkingController.getMainPage();
@@ -101,4 +100,24 @@ public class Router {
                 break;
         }
     }
+
+    public void managePage(Request request) {
+        switch (request.getCommand()) {
+            case "1":
+                manageController.shouLotInfo();
+                this.setCurrentPage(CHOSE_OPERATION_PAGE);
+                break;
+//            case "2":
+//                this.setCurrentPage(manageController.unparkOperation());
+//                break;
+//            case "3":
+//                this.setCurrentPage(manageController.unparkOperation());
+//                break;
+            default:
+                parkingController.wrongOperation();
+                this.setCurrentPage(OPERATION_PAGE);
+                break;
+        }
+    }
+
 }
