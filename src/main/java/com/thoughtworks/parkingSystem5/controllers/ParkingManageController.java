@@ -93,4 +93,14 @@ public class ParkingManageController implements BaseController {
             response.send("输入有误");
         }
     }
+
+    public void removeParkingLotOperation(Request request) {
+        String lotId = request.getCommand();
+        int flag = parkingBoyList.get(0).removeLot(lotId);
+        if(flag == 2){
+            response.send("停车场删除成功！");
+        }else{
+            response.send("停车场删除失败，原因："+reason[flag]);
+        }
+    }
 }

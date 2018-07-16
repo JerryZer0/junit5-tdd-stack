@@ -132,4 +132,19 @@ public class SystemTest {
         verify(manageController).removeParkingLot();
         assertThat(router.getCurrentPage(),is("removeLotPage"));
     }
+
+    @Test
+    public void should_chose_manageController_removeParkingLotOperation_and_currentPage_is_choseOperationPage_when_input_is_3_in_2(){
+        Request request = mock(Request.class);
+        Response response = mock(Response.class);
+        ParkingController controller = mock(ParkingController.class);
+        ParkingManageController manageController = mock(ParkingManageController.class);
+        String currentPage = "removeLotPage";
+        Router router = new Router(controller,manageController, currentPage);
+
+        when(request.getCommand()).thenReturn("removeLotPage");
+        router.checkCurrentPage(request);
+        verify(manageController).removeParkingLotOperation(request);
+        assertThat(router.getCurrentPage(),is("choseOperationPage"));
+    }
 }

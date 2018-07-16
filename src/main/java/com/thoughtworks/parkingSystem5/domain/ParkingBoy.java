@@ -84,4 +84,18 @@ public class ParkingBoy {
         return info;
     }
 
+    public int removeLot(String lotId) {
+        int flag = 0;
+        for(ParkingLot parkingLot:parkingLotList){
+            if(parkingLot.getId() == lotId){
+                if(parkingLot.getCarCounts()>0){
+                    flag = 1;
+                }else{
+                    flag = 2;
+                    parkingLotList.remove(parkingLot);
+                }
+            }
+        }
+        return flag;
+    }
 }

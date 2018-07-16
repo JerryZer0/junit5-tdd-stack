@@ -68,6 +68,10 @@ public class Router {
                 manageController.addParkingLotOperation(request);
                 this.setCurrentPage(CHOSE_OPERATION_PAGE);
                 break;
+            case REMOVE_LOT_PAGE:
+                manageController.removeParkingLotOperation(request);
+                this.setCurrentPage(CHOSE_OPERATION_PAGE);
+                break;
 
         }
     }
