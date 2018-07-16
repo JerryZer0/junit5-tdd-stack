@@ -153,7 +153,20 @@ public class ParkingSystemTest {
     }
 
     @Test
-    public void should_get_car_successfully_and_change_current_page_into_operationPage_when_car_is_in() {
+    public void should_get_car_successfully_and_change_current_page_into_operationPage_when_receiptId_is_correct() {
+        Request request = mock(Request.class);
+        Response response = mock(Response.class);
+        ParkingController controller = mock(ParkingController.class);
+        String currentPage = "unparkPage";
+        Router router = new Router(controller, currentPage);
+
+        when(controller.parkOperation()).thenReturn("operationPage");
+        router.checkCurrentPage(request);
+        verify(controller).unParkCar();
+    }
+
+    @Test
+    public void should_go_into_controller_unParkCar() {
         Request request = mock(Request.class);
         Response response = mock(Response.class);
         ParkingController controller = mock(ParkingController.class);
