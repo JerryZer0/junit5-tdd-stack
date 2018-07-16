@@ -75,7 +75,7 @@ public class Router {
                 break;
             default:
                 parkingController.wrongOperation();
-                this.setCurrentPage(OPERATION_PAGE);
+                this.setCurrentPage(CHOSE_OPERATION_PAGE);
                 break;
         }
     }
