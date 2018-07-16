@@ -136,8 +136,6 @@ public class ParkingSystemTest {
         String currentPage = "parkPage";
         Router router = new Router(controller, currentPage);
 
-        when(request.getCommand()).thenReturn("234");
-
         router.checkCurrentPage(request);
         verify(controller).parkCar(request);
     }
@@ -149,9 +147,21 @@ public class ParkingSystemTest {
         String currentPage = "parkPage";
         Router router = new Router(controller, currentPage);
 
-        when(request.getCommand()).thenReturn("1");
         when(controller.parkOperation()).thenReturn("operationPage");
         router.checkCurrentPage(request);
         verify(controller).parkCar(request);
+    }
+
+    @Test
+    public void should_get_car_successfully_and_change_current_page_into_operationPage_when_car_is_in() {
+        Request request = mock(Request.class);
+        Response response = mock(Response.class);
+        ParkingController controller = mock(ParkingController.class);
+        String currentPage = "unparkPage";
+        Router router = new Router(controller, currentPage);
+
+        when(controller.parkOperation()).thenReturn("operationPage");
+        router.checkCurrentPage(request);
+        verify(controller).unParkCar();
     }
 }
