@@ -12,6 +12,7 @@ public class ParkingLot {
     public ParkingLot(int size) {
         this.size = size;
     }
+
     public ParkingLot(String name, int size) {
         this.name = name;
         this.size = size;
@@ -64,7 +65,7 @@ public class ParkingLot {
 
     public String toString() {
         String info = "|" + getId() + "|" + getName() + "|" + getSize() + "(个)|"
-                + getCarCounts() + "(辆)|" + (getCarCounts() - getSize()) + "(个)|";
+                + getCarCounts() + "(辆)|" + (getSize() - getCarCounts()) + "(个)|\n";
         return info;
     }
 }

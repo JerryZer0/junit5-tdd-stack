@@ -14,11 +14,14 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        List<ParkingLot> parkingLotList = new ArrayList<>();
-        parkingLotList.add(new ParkingLot(2));
-        parkingLotList.add(new ParkingLot(1));
 
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
+        ParkingLot parkingLot1 = new ParkingLot("hah",2);
+        ParkingLot parkingLot2 = new ParkingLot("heh",2);
+
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.addParkingLot(parkingLot1);
+        parkingBoy.addParkingLot(parkingLot2);
+
         List<ParkingBoy> parkingBoyList = new ArrayList<>();
         parkingBoyList.add(parkingBoy);
         Request request = new Request();

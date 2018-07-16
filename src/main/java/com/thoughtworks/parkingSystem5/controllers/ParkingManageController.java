@@ -68,6 +68,7 @@ public class ParkingManageController implements BaseController {
     public void shouLotInfo() {
         ParkingBoy parkingBoy = parkingBoyList.get(0);
         response.send(parkingBoy.lotInfo());
+        getRootMainPage();
     }
 
     public void addParkingLotOperation(Request request) {
@@ -92,6 +93,7 @@ public class ParkingManageController implements BaseController {
         }else{
             response.send("输入有误");
         }
+        getRootMainPage();
     }
 
     public void removeParkingLotOperation(Request request) {
@@ -102,5 +104,6 @@ public class ParkingManageController implements BaseController {
         }else{
             response.send("停车场删除失败，原因："+reason[flag]);
         }
+        getRootMainPage();
     }
 }
