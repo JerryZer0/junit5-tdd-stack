@@ -141,5 +141,17 @@ public class ParkingSystemTest {
         router.checkCurrentPage(request);
         verify(controller).parkCar(request);
     }
+    @Test
+    public void should_park_failed_and_change_current_page_into_operationPage_when_parkingLot_is_full() {
+        Request request = mock(Request.class);
+        Response response = mock(Response.class);
+        ParkingController controller = mock(ParkingController.class);
+        String currentPage = "parkPage";
+        Router router = new Router(controller, currentPage);
 
+        when(request.getCommand()).thenReturn("1");
+        when(controller.parkOperation()).thenReturn("operationPage");
+        router.checkCurrentPage(request);
+        verify(controller).parkCar(request);
+    }
 }
