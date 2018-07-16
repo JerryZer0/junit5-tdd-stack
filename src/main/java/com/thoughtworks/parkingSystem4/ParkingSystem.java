@@ -13,16 +13,6 @@ public class ParkingSystem {
         this.parkingBoyList = parkingBoyList;
     }
 
-    public String getOrder(ParkingSystemIO io) {
-        String order = io.getOrder();
-        return order;
-    }
-
-    public String getCarId(ParkingSystemIO io) {
-        String carId = io.getCarId();
-        return carId;
-    }
-
     public Receipt park(Car car) {
         Receipt receipt = null;
         for (int i = 0; i < parkingBoyList.size(); i++) {
@@ -44,11 +34,6 @@ public class ParkingSystem {
         return full;
     }
 
-    public String getReceiptId(ParkingSystemIO io) {
-        String receiptId = io.getReceiptId();
-        return receiptId;
-    }
-
     public Car getOutCar(Receipt receipt) {
         Car car = null;
         for (int i = 0; i < parkingBoyList.size(); i++) {
@@ -59,56 +44,5 @@ public class ParkingSystem {
         }
         return car;
     }
-
-    public static void main(String[] args) {
-
-        ParkingSystemIO io = new ParkingSystemIO();
-        List<ParkingLot> parkingLotList = new ArrayList<>();
-        parkingLotList.add(new ParkingLot(2));
-        parkingLotList.add(new ParkingLot(1));
-
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
-        List<ParkingBoy> parkingBoyList = new ArrayList<>();
-        parkingBoyList.add(parkingBoy);
-        ParkingSystem parkingSystem = new ParkingSystem(parkingBoyList);
-        Scanner in = new Scanner(System.in);
-
-        while (true) {
-            io.systemStarShow();
-            String order = parkingSystem.getOrder(io);
-
-
-            String orderId = in.nextLine();
-
-
-            if (order.equals("1")) {
-                String carId;
-                if (parkingSystem.isFull()) {
-                    io.parkingLotIsFull();
-                } else {
-                    io.askCarId();
-                    carId = parkingSystem.getCarId(io);
-                    Car car = new Car(carId);
-                    Receipt receipt = parkingSystem.park(car);
-                    io.parkSuccessfully(receipt);
-                }
-            } else if (order.equals("2")) {
-                String receiptId;
-                io.askReceiptId();
-                receiptId = io.getReceiptId();
-                Receipt receipt = new Receipt();
-                receipt.setUuid(receiptId);
-                Car myCar = parkingSystem.getOutCar(receipt);
-                if (myCar == null) {
-                    io.getOutCarFailed();
-                } else {
-                    io.getOutCarSuccessfully(myCar);
-                }
-            } else {
-                io.remindErrorOrder();
-            }
-        }
-    }
-
 
 }

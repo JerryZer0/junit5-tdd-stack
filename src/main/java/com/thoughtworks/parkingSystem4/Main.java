@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        ParkingSystemIO io = new ParkingSystemIO();
         List<ParkingLot> parkingLotList = new ArrayList<>();
         parkingLotList.add(new ParkingLot(2));
         parkingLotList.add(new ParkingLot(1));
@@ -21,8 +20,10 @@ public class Main {
         Request request = new Request();
         Response response = new Response();
         ParkingController controller = new ParkingController(system, request, response);
+
         response.send("1.停车\n2.取车\n请输入您要进行的操作：");
         request.setCurrentPage("operationPage");
+
         try {
             while (true) {
                 String order = in.nextLine();

@@ -10,11 +10,12 @@ public class ParkingController {
     public static final String PARK_PAGE = "parkPage";
     public static final String UNPARK_PAGE = "unparkPage";
 
-    ParkingController(ParkingSystem system, Request request, Response response){
+    ParkingController(ParkingSystem system, Request request, Response response) {
         this.system = system;
         this.request = request;
         this.response = response;
     }
+
     public Request checkCurrentPage(Request request) {
         this.request = request;
         switch (request.getCurrentPage()) {
@@ -34,28 +35,28 @@ public class ParkingController {
         return this.request;
     }
 
-    private void parkCar() {
+    public void parkCar() {
         Car car = new Car(request.getCommand());
         Receipt receipt = system.park(car);
         response.send("停车成功，您的小票是：" + receipt.getReceiptId());
         getMainPage();
     }
 
-    private void unParkCar() {
+    public void unParkCar() {
         Receipt receipt = new Receipt();
         receipt.setUuid(request.getCommand());
         Car car = system.getOutCar(receipt);
         String message;
-        if(car == null){
+        if (car == null) {
             message = "车已取出，您的车牌号是：" + car.getCarid();
-        }else{
+        } else {
 
         }
         response.send("车已取出，您的车牌号是：" + car.getCarid());
         getMainPage();
     }
 
-    private void parkPage() {
+    public void parkPage() {
         switch (request.getCommand()) {
             case "1":
                 parkOperation();
@@ -69,21 +70,21 @@ public class ParkingController {
         }
     }
 
-    private void unparkOperation() {
+    public void unparkOperation() {
         response.send("请输入小票编号：");
         request.setCurrentPage(UNPARK_PAGE);
     }
 
-    private void wrongOperation() {
+    public void wrongOperation() {
         response.send("非法指令，请查证后再输");
         getMainPage();
     }
 
-    private void parkOperation() {
-        if(system.isFull()){
+    public void parkOperation() {
+        if (system.isFull()) {
             response.send("车已停满，请晚点再来");
             getMainPage();
-        }else{
+        } else {
             response.send("请输入车牌号：");
             request.setCurrentPage(PARK_PAGE);
         }

@@ -9,34 +9,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class ParkingSystemTest {
-
-    @Test
-    public void should_return_false_when_input_is_incorrect() {
-        //ParkingSystem parkingSystem = new ParkingSystem();
-
-        List<ParkingBoy> parkingBoyList = new ArrayList<>();
-        ParkingSystem system = new ParkingSystem(parkingBoyList);
-        ParkingSystemIO parkingSystemIO = mock(ParkingSystemIO.class);
-        when(parkingSystemIO.getOrder()).thenReturn("343");
-
-        String order = system.getOrder(parkingSystemIO);
-        assertThat(order, is("343"));
-    }
-
-    @Test
-    public void should_return_1_when_input_is_correct() {
-        List<ParkingBoy> parkingBoyList = new ArrayList<>();
-        ParkingSystem system = new ParkingSystem(parkingBoyList);
-
-        ParkingSystemIO parkingSystemIO = mock(ParkingSystemIO.class);
-        when(parkingSystemIO.getOrder()).thenReturn("1");
-
-        String order = system.getOrder(parkingSystemIO);
-        assertThat(order, is("1"));
-    }
 
     @Test
     public void should_return_true_when_parkingLot_is_full() {
@@ -64,30 +40,6 @@ public class ParkingSystemTest {
 
         Receipt receipt1 = system.park(car);
         assertThat(receipt1, is(receipt));
-    }
-
-    @Test
-    public void should_ask_receiptID_when_order_is_2() {
-        List<ParkingBoy> parkingBoyList = new ArrayList<>();
-        ParkingSystem system = new ParkingSystem(parkingBoyList);
-        ParkingSystemIO io = mock(ParkingSystemIO.class);
-        when(io.getReceiptId()).thenReturn("33344444-342");
-
-        String receiptId = system.getReceiptId(io);
-
-        assertThat(receiptId, is("33344444-342"));
-    }
-
-    @Test
-    public void should_ask_carID_when_parkingLot_is_not_full() {
-        List<ParkingBoy> parkingBoyList = new ArrayList<>();
-        ParkingSystem system = new ParkingSystem(parkingBoyList);
-
-        ParkingSystemIO parkingSystemIO = mock(ParkingSystemIO.class);
-        when(parkingSystemIO.getCarId()).thenReturn("CZ123");
-
-        String carId = system.getCarId(parkingSystemIO);
-        assertThat(carId, is("CZ123"));
     }
 
     @Test
@@ -135,12 +87,34 @@ public class ParkingSystemTest {
     }
 
     /*
-    * Controller方法测试
-    * 
-    * */
+     * Controller方法测试
+     *
+     * */
+    private ParkingSystem init() {
+        ParkingBoy parkingBoy = mock(ParkingBoy.class);
+        List<ParkingBoy> parkingBoyList = new ArrayList<>();
+        Receipt receipt = new Receipt();
+        Car car = new Car("CZ123");
+        when(parkingBoy.isFull()).thenReturn(false);
+        when(parkingBoy.park(car)).thenReturn(receipt);
+        parkingBoyList.add(parkingBoy);
+        ParkingSystem system = new ParkingSystem(parkingBoyList);
+        return system;
+    }
+
     @Test
-    public void should_(){
-        
+    public void should_change_current_page_into_parkPage_when_input_1_and_parkingLot_is_not_full() {
+        Request request = mock(Request.class);
+        Response response = mock(Response.class);
+        ParkingSystem system = init();
+        ParkingController controller = new ParkingController(system, request, response);
+        String message = "请输入车牌号：";
+        when(request.getCurrentPage()).thenReturn("operationPage");
+        when(request.getCommand()).thenReturn("1");
+
+        controller.checkCurrentPage(request);
+        verify(response).send(message);
+        verify(request).setCurrentPage("parkPage");
     }
 
 
