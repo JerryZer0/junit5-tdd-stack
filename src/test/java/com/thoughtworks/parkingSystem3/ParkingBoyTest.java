@@ -27,7 +27,7 @@ public class ParkingBoyTest {
         when(parkingLot.isFull()).thenReturn(false);
         when(parkingLot.park(car)).thenReturn(receipt);
         Receipt receipt1 = parkingBoy.park(car);
-        assertThat(parkingBoy.park(car), is(receipt));
+        assertThat(receipt1, is(receipt));
     }
 
     @Test

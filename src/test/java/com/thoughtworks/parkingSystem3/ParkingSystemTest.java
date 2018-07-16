@@ -16,7 +16,7 @@ public class ParkingSystemTest {
 
     @Test
     public void should_return_false_when_input_is_incorrect() {
-        //ParkingSystem parkingSystem = new ParkingSystem();
+        //ParkingController parkingSystem = new ParkingController();
 
         List<ParkingBoy> parkingBoyList = new ArrayList<>();
         ParkingSystem system = new ParkingSystem(parkingBoyList);

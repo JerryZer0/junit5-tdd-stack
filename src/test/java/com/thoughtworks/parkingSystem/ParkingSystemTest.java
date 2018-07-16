@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 public class ParkingSystemTest {
 
-    //ParkingSystem pakingSystem = new ParkingSystem(5);
+    //ParkingController pakingSystem = new ParkingController(5);
     Car car = new Car("2233");
 
     //查看停车场空位

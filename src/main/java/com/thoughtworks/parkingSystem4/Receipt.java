@@ -9,7 +9,6 @@ public class Receipt {
     Receipt() {};
 
     Receipt(int numb) {
-
         parkingLot = numb;
     }
 

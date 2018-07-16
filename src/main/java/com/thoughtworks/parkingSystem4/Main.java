@@ -14,24 +14,23 @@ public class Main {
         ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
         List<ParkingBoy> parkingBoyList = new ArrayList<>();
         parkingBoyList.add(parkingBoy);
-        ParkingSystem system = new ParkingSystem(parkingBoyList);
-        Scanner in = new Scanner(System.in);
-
         Request request = new Request();
         Response response = new Response();
-        ParkingController controller = new ParkingController(system, request, response);
+        ParkingController controller = new ParkingController(parkingBoyList, request, response);
+        Scanner in = new Scanner(System.in);
 
         response.send("1.停车\n2.取车\n请输入您要进行的操作：");
-        request.setCurrentPage("operationPage");
+        String currentPage = "operationPage";
+        Router router = new Router(controller, currentPage);
 
         try {
             while (true) {
                 String order = in.nextLine();
                 request.setCommand(order);
-                request = controller.checkCurrentPage(request);
+                router.checkCurrentPage(request);
             }
         } catch (Exception e) {
-
+            System.err.println("App end!");
         }
     }
 }
