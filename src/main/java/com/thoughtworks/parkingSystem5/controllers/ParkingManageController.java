@@ -7,7 +7,7 @@ import com.thoughtworks.parkingSystem5.domain.ParkingBoy;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParkingManageController implements BaseController{
+public class ParkingManageController implements BaseController {
 
     Response response;
     Request request;
@@ -24,10 +24,6 @@ public class ParkingManageController implements BaseController{
         this.parkingBoyList = parkingBoyList;
         this.request = request;
         this.response = response;
-    }
-
-    public void getLotManagement() {
-        response.send("1.查看停车场详情\n2.添加停车场\n3.删除停车场");
     }
 
     public void getBaseInfo() {
@@ -55,7 +51,16 @@ public class ParkingManageController implements BaseController{
         response.send(reason[0]);
     }
 
-    public String getMainPage() {
-        return null;
+    public void getMainPage() {
+        response.send("1.查看停车场详情\n2.添加停车场\n3.删除停车场");
+    }
+
+    public void getRootMainPage() {
+        response.send("1.停车服务\n2.停车场管理\n请输入您要进入的页面：");
+    }
+
+    public void wrongOperation() {
+        response.send("非法指令，请查证后再输");
+        getRootMainPage();
     }
 }

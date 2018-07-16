@@ -59,6 +59,12 @@ public class Router {
                 break;
 
 
+            case MANAGE_LOT_PAGE:
+                manageController.wrongOperation();
+                this.setCurrentPage(CHOSE_OPERATION_PAGE);
+                break;
+
+
 
 
         }
@@ -71,7 +77,8 @@ public class Router {
                 this.setCurrentPage(OPERATION_PAGE);
                 break;
             case "2":
-                this.setCurrentPage(manageController.getMainPage());
+                manageController.getMainPage();
+                this.setCurrentPage(MANAGE_LOT_PAGE);
                 break;
             default:
                 parkingController.wrongOperation();

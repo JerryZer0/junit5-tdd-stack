@@ -52,4 +52,31 @@ public class SystemTest {
         router.checkCurrentPage(request);
         verify(manageController).getMainPage();
     }
+
+    @Test
+    public void should_chose_wrongOperation_when_input_is_incorrect_in_manageController(){
+        Request request = mock(Request.class);
+        Response response = mock(Response.class);
+        ParkingController controller = mock(ParkingController.class);
+        ParkingManageController manageController = mock(ParkingManageController.class);
+        String currentPage = "manageLotPage";
+        Router router = new Router(controller,manageController, currentPage);
+
+        when(request.getCommand()).thenReturn("21354");
+        router.checkCurrentPage(request);
+        verify(manageController).wrongOperation();
+    }
+//    @Test
+//    public void should_chose_manageController_when_input_is_2(){
+//        Request request = mock(Request.class);
+//        Response response = mock(Response.class);
+//        ParkingController controller = mock(ParkingController.class);
+//        ParkingManageController manageController = mock(ParkingManageController.class);
+//        String currentPage = "choseOperationPage";
+//        Router router = new Router(controller,manageController, currentPage);
+//
+//        when(request.getCommand()).thenReturn("2");
+//        router.checkCurrentPage(request);
+//        verify(manageController).getMainPage();
+//    }
 }
