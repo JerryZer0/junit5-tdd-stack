@@ -1,7 +1,5 @@
 package com.thoughtworks.parkingSystem5.domain;
 
-import com.thoughtworks.parkingSystem5.ParkingExcpetion;
-
 import java.util.HashMap;
 
 public class ParkingLot {
@@ -11,7 +9,7 @@ public class ParkingLot {
     private String id;
     public HashMap<String, Car> carList = new HashMap<>();
 
-    ParkingLot(int size) {
+    public ParkingLot(int size) {
         this.size = size;
     }
 

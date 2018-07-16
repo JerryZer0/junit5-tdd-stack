@@ -23,7 +23,7 @@ public class ParkingBoy {
 
     ParkingBoy() {}
 
-    ParkingBoy(List<ParkingLot> parkingLotList) {
+    public ParkingBoy(List<ParkingLot> parkingLotList) {
         this.parkingLotList = parkingLotList;
     }
 

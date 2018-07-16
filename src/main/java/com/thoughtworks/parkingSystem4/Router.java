@@ -28,7 +28,7 @@ public class Router {
 
         switch (currentPage) {
 //            case "mainPage":
-//                getMainPage();
+//                getRootMainPage();
 //                break;
             case OPERATION_PAGE:
                 parkPage(request);

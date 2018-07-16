@@ -1,8 +1,11 @@
 package com.thoughtworks.parkingSystem5;
 
 import com.thoughtworks.parkingSystem5.controllers.ParkingController;
+import com.thoughtworks.parkingSystem5.controllers.ParkingManageController;
 import com.thoughtworks.parkingSystem5.domain.ParkingBoy;
 import com.thoughtworks.parkingSystem5.domain.ParkingLot;
+import com.thoughtworks.parkingSystem5.domain.Request;
+import com.thoughtworks.parkingSystem5.domain.Response;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +24,12 @@ public class Main {
         Request request = new Request();
         Response response = new Response();
         ParkingController controller = new ParkingController(parkingBoyList, request, response);
+        ParkingManageController manageController = new ParkingManageController(parkingBoyList, request, response);
         Scanner in = new Scanner(System.in);
 
-        response.send("1.停车\n2.取车\n请输入您要进行的操作：");
-        String currentPage = "operationPage";
-        Router router = new Router(controller, currentPage);
+        response.send("1.停车服务\n2.停车场管理\n请输入您要进入的页面：");
+        String currentPage = "choseOperationPage";
+        Router router = new Router(controller, manageController, currentPage);
 
         try {
             while (true) {
