@@ -1,4 +1,4 @@
-package com.thoughtworks.parkingSystem4;
+package com.thoughtworks.parkingSystem5.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,12 @@ public class ParkingBoy {
 
     List<ParkingLot> parkingLotList = new ArrayList<>();
     //停车位总量
+    public int getTotalSize(){
+        int totalSize = 0;
+        for(ParkingLot parkingLot:parkingLotList)
+            totalSize += parkingLot.getSize();
+        return totalSize;
+    }
 
     public int getContain() {
         int count = 0;
@@ -63,4 +69,18 @@ public class ParkingBoy {
         }
         return key;
     }
+
+    public String lotInfo() {
+        String info = "|停车场ID|名称|车位|已停车辆|剩余车位|\n";
+        info += "|停车场ID|名称|车位|已停车辆|剩余车位|\n";
+        info += "======================================\n";
+        for(ParkingLot parkingLot : parkingLotList){
+            info += parkingLot.toString();
+        }
+        info += "/n总车位："+getTotalSize()+"(个)\n";
+        info += "停车总量："+getContain()+"(辆)\n";
+        info += "总剩余车位："+(getTotalSize()-getContain())+"（个）\n";
+        return info;
+    }
+
 }
