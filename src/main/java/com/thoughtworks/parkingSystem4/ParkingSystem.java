@@ -1,4 +1,4 @@
-package com.thoughtworks.parkingSystem3;
+package com.thoughtworks.parkingSystem4;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class ParkingSystem {
 
     List<ParkingBoy> parkingBoyList = new ArrayList<>();
+
 
     ParkingSystem(List<ParkingBoy> parkingBoyList) {
         this.parkingBoyList = parkingBoyList;
@@ -70,47 +71,44 @@ public class ParkingSystem {
         List<ParkingBoy> parkingBoyList = new ArrayList<>();
         parkingBoyList.add(parkingBoy);
         ParkingSystem parkingSystem = new ParkingSystem(parkingBoyList);
+        Scanner in = new Scanner(System.in);
+
         while (true) {
             io.systemStarShow();
             String order = parkingSystem.getOrder(io);
+
+
+            String orderId = in.nextLine();
+
+
             if (order.equals("1")) {
-                parkCar(io, parkingSystem);
+                String carId;
+                if (parkingSystem.isFull()) {
+                    io.parkingLotIsFull();
+                } else {
+                    io.askCarId();
+                    carId = parkingSystem.getCarId(io);
+                    Car car = new Car(carId);
+                    Receipt receipt = parkingSystem.park(car);
+                    io.parkSuccessfully(receipt);
+                }
             } else if (order.equals("2")) {
-                outCar(io, parkingSystem);
+                String receiptId;
+                io.askReceiptId();
+                receiptId = io.getReceiptId();
+                Receipt receipt = new Receipt();
+                receipt.setUuid(receiptId);
+                Car myCar = parkingSystem.getOutCar(receipt);
+                if (myCar == null) {
+                    io.getOutCarFailed();
+                } else {
+                    io.getOutCarSuccessfully(myCar);
+                }
             } else {
-                incorrectInput(io);
+                io.remindErrorOrder();
             }
         }
     }
 
-    public static void parkCar(ParkingSystemIO io, ParkingSystem parkingSystem) {
-        String carId;
-        if (parkingSystem.isFull()) {
-            io.parkingLotIsFull();
-        } else {
-            io.askCarId();
-            carId = parkingSystem.getCarId(io);
-            Car car = new Car(carId);
-            Receipt receipt = parkingSystem.park(car);
-            io.parkSuccessfully(receipt);
-        }
-    }
 
-    public static void incorrectInput(ParkingSystemIO io) {
-        io.remindErrorOrder();
-    }
-
-    public static void outCar(ParkingSystemIO io, ParkingSystem parkingSystem) {
-        String receiptId;
-        io.askReceiptId();
-        receiptId = io.getReceiptId();
-        Receipt receipt = new Receipt();
-        receipt.setUuid(receiptId);
-        Car myCar = parkingSystem.getOutCar(receipt);
-        if (myCar == null) {
-            io.getOutCarFailed();
-        } else {
-            io.getOutCarSuccessfully(myCar);
-        }
-    }
 }
