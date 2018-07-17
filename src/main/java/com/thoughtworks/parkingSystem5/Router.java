@@ -123,7 +123,7 @@ public class Router {
                 break;
             default:
                 manageController.wrongOperation();
-                this.setCurrentPage(OPERATION_PAGE);
+                this.setCurrentPage(CHOSE_OPERATION_PAGE);
                 break;
         }
     }

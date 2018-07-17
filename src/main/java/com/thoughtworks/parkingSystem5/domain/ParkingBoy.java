@@ -7,6 +7,10 @@ public class ParkingBoy {
 
     List<ParkingLot> parkingLotList = new ArrayList<>();
 
+    public List<ParkingLot> getParkingLotList() {
+        return parkingLotList;
+    }
+
     //停车位总量
     public int getTotalSize() {
         int totalSize = 0;
@@ -75,7 +79,6 @@ public class ParkingBoy {
 
     public String lotInfo() {
         String info = "|停车场ID|名称|车位|已停车辆|剩余车位|\n";
-        info += "|停车场ID|名称|车位|已停车辆|剩余车位|\n";
         info += "======================================\n";
         for (ParkingLot parkingLot : parkingLotList) {
             info += parkingLot.toString();
@@ -88,13 +91,15 @@ public class ParkingBoy {
 
     public int removeLot(String lotId) {
         int flag = 0;
-        for (ParkingLot parkingLot : parkingLotList) {
+        for (ParkingLot parkingLot : getParkingLotList()) {
             if (parkingLot.getId().equals(lotId)) {
                 if (parkingLot.getCarCounts() > 0) {
                     flag = 1;
+                    break;
                 } else {
                     flag = 2;
                     parkingLotList.remove(parkingLot);
+                    break;
                 }
             }
         }

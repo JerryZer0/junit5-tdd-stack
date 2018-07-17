@@ -2,9 +2,14 @@ package com.thoughtworks.parkingSystem5;
 
 import com.thoughtworks.parkingSystem5.controllers.ParkingController;
 import com.thoughtworks.parkingSystem5.controllers.ParkingManageController;
+import com.thoughtworks.parkingSystem5.domain.ParkingBoy;
+import com.thoughtworks.parkingSystem5.domain.ParkingLot;
 import com.thoughtworks.parkingSystem5.domain.Request;
 import com.thoughtworks.parkingSystem5.domain.Response;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -73,6 +78,7 @@ public class SystemTest {
         verify(manageController).wrongOperation();
         assertThat(router.getCurrentPage(),is("choseOperationPage"));
     }
+
     @Test
     public void should_chose_show_info_and_currentPage_is_choseOperationPage_when_in_2_and_input_is_1(){
         Request request = mock(Request.class);
@@ -146,5 +152,35 @@ public class SystemTest {
         router.checkCurrentPage(request);
         verify(manageController).removeParkingLotOperation(request);
         assertThat(router.getCurrentPage(),is("choseOperationPage"));
+    }
+
+//    @Test
+//    public void should_(){
+//        String str = "（你傻，8）";
+//        boolean key = true;
+//        if(!str.substring(0,1).equals("（"))
+//            key = false;
+//        if(!str.substring(str.length() - 1,str.length()).equals("）"))
+//            key = false;
+//        String info = str.substring(1, str.length() - 1);
+//        String []baseInfo = info.split("，");
+//        System.out.println(baseInfo[0]);
+//    }
+
+    @Test
+    public void should_getNmae(){
+        Request request = new Request();
+        request.setCommand("（你好，8）");
+
+        Response response = new Response();
+        ParkingBoy parkingBoy = new ParkingBoy();
+        List<ParkingBoy> parkingBoyList = new ArrayList<>();
+        parkingBoyList.add(parkingBoy);
+        ParkingController controller = new ParkingController(parkingBoyList, request, response);
+        ParkingManageController manageController = new ParkingManageController(parkingBoyList, request, response);
+
+        //Router router = new Router(controller, manageController, "addLotPage");
+        manageController.addParkingLotOperation(request);
+        //parkingBoy.addParkingLot();
     }
 }
