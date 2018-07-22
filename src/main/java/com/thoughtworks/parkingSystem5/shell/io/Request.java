@@ -1,4 +1,4 @@
-package com.thoughtworks.parkingSystem5.domain;
+package com.thoughtworks.parkingSystem5.shell.io;
 
 public class Request {
     private String command;

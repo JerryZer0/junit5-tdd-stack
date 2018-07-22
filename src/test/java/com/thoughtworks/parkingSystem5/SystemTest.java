@@ -1,11 +1,11 @@
 package com.thoughtworks.parkingSystem5;
 
-import com.thoughtworks.parkingSystem5.controllers.ParkingController;
-import com.thoughtworks.parkingSystem5.controllers.ParkingManageController;
+import com.thoughtworks.parkingSystem5.shell.Router;
+import com.thoughtworks.parkingSystem5.shell.controller.ParkingController;
+import com.thoughtworks.parkingSystem5.shell.controller.ParkingManageController;
 import com.thoughtworks.parkingSystem5.domain.ParkingBoy;
-import com.thoughtworks.parkingSystem5.domain.ParkingLot;
-import com.thoughtworks.parkingSystem5.domain.Request;
-import com.thoughtworks.parkingSystem5.domain.Response;
+import com.thoughtworks.parkingSystem5.shell.io.Request;
+import com.thoughtworks.parkingSystem5.shell.io.Response;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -13,7 +13,6 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;

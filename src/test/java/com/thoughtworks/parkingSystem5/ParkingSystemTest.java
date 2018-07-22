@@ -1,7 +1,9 @@
 package com.thoughtworks.parkingSystem5;
 
-import com.thoughtworks.parkingSystem5.controllers.ParkingController;
+import com.thoughtworks.parkingSystem5.shell.controller.ParkingController;
 import com.thoughtworks.parkingSystem5.domain.*;
+import com.thoughtworks.parkingSystem5.shell.io.Request;
+import com.thoughtworks.parkingSystem5.shell.io.Response;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

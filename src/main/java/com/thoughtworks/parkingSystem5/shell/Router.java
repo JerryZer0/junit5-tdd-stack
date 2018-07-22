@@ -1,8 +1,8 @@
-package com.thoughtworks.parkingSystem5;
+package com.thoughtworks.parkingSystem5.shell;
 
-import com.thoughtworks.parkingSystem5.controllers.ParkingController;
-import com.thoughtworks.parkingSystem5.controllers.ParkingManageController;
-import com.thoughtworks.parkingSystem5.domain.Request;
+import com.thoughtworks.parkingSystem5.shell.controller.ParkingController;
+import com.thoughtworks.parkingSystem5.shell.controller.ParkingManageController;
+import com.thoughtworks.parkingSystem5.shell.io.Request;
 
 public class Router {
 
@@ -22,11 +22,10 @@ public class Router {
     public static final String REMOVE_LOT_PAGE = "removeLotPage";
 
 
-    Router(ParkingController parkingController, ParkingManageController manageController, String currentPage) {
+    public Router(ParkingController parkingController, ParkingManageController manageController, String currentPage) {
         this.parkingController = parkingController;
         this.manageController = manageController;
         this.currentPage = currentPage;
-
     }
 
     Router(ParkingController controller, String currentPage) {
@@ -61,8 +60,6 @@ public class Router {
                 parkingController.unParkCar();
                 this.setCurrentPage(CHOSE_OPERATION_PAGE);
                 break;
-
-
             case MANAGE_LOT_PAGE:
                 managePage(request);
                 break;

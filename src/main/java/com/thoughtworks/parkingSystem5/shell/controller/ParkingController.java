@@ -1,6 +1,8 @@
-package com.thoughtworks.parkingSystem5.controllers;
+package com.thoughtworks.parkingSystem5.shell.controller;
 
 import com.thoughtworks.parkingSystem5.domain.*;
+import com.thoughtworks.parkingSystem5.shell.io.Request;
+import com.thoughtworks.parkingSystem5.shell.io.Response;
 
 import java.util.ArrayList;
 import java.util.List;
