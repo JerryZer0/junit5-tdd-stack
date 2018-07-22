@@ -29,6 +29,12 @@ public class Router {
 
     }
 
+    Router(ParkingController controller, String currentPage) {
+        this.parkingController = controller;
+        this.currentPage = currentPage;
+
+    }
+
     public String getCurrentPage() {
         return currentPage;
     }

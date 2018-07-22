@@ -154,19 +154,6 @@ public class SystemTest {
         assertThat(router.getCurrentPage(),is("choseOperationPage"));
     }
 
-//    @Test
-//    public void should_(){
-//        String str = "（你傻，8）";
-//        boolean key = true;
-//        if(!str.substring(0,1).equals("（"))
-//            key = false;
-//        if(!str.substring(str.length() - 1,str.length()).equals("）"))
-//            key = false;
-//        String info = str.substring(1, str.length() - 1);
-//        String []baseInfo = info.split("，");
-//        System.out.println(baseInfo[0]);
-//    }
-
     @Test
     public void should_getNmae(){
         Request request = new Request();
