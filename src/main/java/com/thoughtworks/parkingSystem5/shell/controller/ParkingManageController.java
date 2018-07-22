@@ -8,7 +8,7 @@ import com.thoughtworks.parkingSystem5.domain.ParkingBoy;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParkingManageController implements BaseController {
+public class ParkingManageController {
 
     Response response;
     Request request;

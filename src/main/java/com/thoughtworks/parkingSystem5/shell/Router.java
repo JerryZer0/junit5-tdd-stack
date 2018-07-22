@@ -1,14 +1,22 @@
 package com.thoughtworks.parkingSystem5.shell;
 
+import com.thoughtworks.parkingSystem5.shell.controller.BaseController;
 import com.thoughtworks.parkingSystem5.shell.controller.ParkingController;
 import com.thoughtworks.parkingSystem5.shell.controller.ParkingManageController;
 import com.thoughtworks.parkingSystem5.shell.io.Request;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Router {
 
     private ParkingController parkingController;
     private ParkingManageController manageController;
     private String currentPage;
+
+    private final String initRoutePath;
+    private String currentPath;
+    private Map<String,BaseController> routeMaps = new HashMap<>();
 
     public static final String MAIN_PAGE = "mainPage";
     public static final String CHOSE_OPERATION_PAGE = "choseOperationPage";
@@ -22,16 +30,47 @@ public class Router {
     public static final String REMOVE_LOT_PAGE = "removeLotPage";
 
 
+    public Router(String initStatus){
+        this.initRoutePath = initStatus;
+        this.currentPage = initStatus;
+    }
+
+    public void lanch(){
+        routeMaps.get(this.currentPath).process();
+    }
+
+    public void registerRoute(String route, BaseController controller){
+        routeMaps.put(route,controller);
+    }
+
+    public void processRequest(Request request){
+        String routePath = buildLocalRoutePath(request);
+        String forwardRoute = routeMaps.get(routePath).process();
+        currentPath = routePath;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     public Router(ParkingController parkingController, ParkingManageController manageController, String currentPage) {
         this.parkingController = parkingController;
         this.manageController = manageController;
         this.currentPage = currentPage;
+        this.initRoutePath = currentPage;
     }
 
     Router(ParkingController controller, String currentPage) {
         this.parkingController = controller;
         this.currentPage = currentPage;
-
+        this.initRoutePath = currentPage;
     }
 
     public String getCurrentPage() {

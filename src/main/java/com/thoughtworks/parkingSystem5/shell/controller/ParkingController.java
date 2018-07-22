@@ -7,7 +7,7 @@ import com.thoughtworks.parkingSystem5.shell.io.Response;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParkingController implements BaseController{
+public class ParkingController{
 
     Response response;
     Request request;
