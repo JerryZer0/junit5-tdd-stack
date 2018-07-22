@@ -65,29 +65,39 @@ public class ParkingManageController implements BaseController {
         getRootMainPage();
     }
 
-    public void shouLotInfo() {
+    public void showLotInfo() {
         ParkingBoy parkingBoy = parkingBoyList.get(0);
         response.send(parkingBoy.lotInfo());
         getRootMainPage();
     }
 
-    public void addParkingLotOperation(Request request) {
+    private ParkingLot getInfo(String info){
         boolean key = true;
-        String str = request.getCommand();
-        if(!str.substring(0,1).equals("（"))
+        if(!info.substring(0,1).equals("（"))
             key = false;
-        if(!str.substring(str.length() - 1,str.length()).equals("）"))
+        if(!info.substring(info.length() - 1,info.length()).equals("）"))
             key = false;
-        String info = str.substring(1, str.length() - 1);
-        String []baseInfo = info.split("，");
+        String lotInfo = info.substring(1, info.length() - 1);
+        String []baseInfo = lotInfo.split("，");
         int count = -1;
         try {
             count = Integer.parseInt(baseInfo[1]);
         }catch (Exception e){
             key = false;
         }
-        if(key && count > 0){
-            ParkingLot parkingLot = new ParkingLot(baseInfo[0],count);
+        ParkingLot parkingLot = null;
+        if(key && count>0){
+            parkingLot = new ParkingLot(baseInfo[0],count);
+        }
+        return parkingLot;
+    }
+
+
+    public void addParkingLotOperation(Request request) {
+
+        String str = request.getCommand();
+        ParkingLot parkingLot = getInfo(str);
+        if(parkingLot!=null){
             parkingBoyList.get(0).addParkingLot(parkingLot);
             response.send("停车场添加成功！");
         }else{

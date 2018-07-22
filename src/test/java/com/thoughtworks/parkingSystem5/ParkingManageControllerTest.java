@@ -1,14 +1,15 @@
 package com.thoughtworks.parkingSystem5;
 
 import com.thoughtworks.parkingSystem5.controllers.ParkingManageController;
-import com.thoughtworks.parkingSystem5.domain.ParkingBoy;
-import com.thoughtworks.parkingSystem5.domain.Request;
-import com.thoughtworks.parkingSystem5.domain.Response;
+import com.thoughtworks.parkingSystem5.domain.*;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -16,8 +17,8 @@ import static org.mockito.Mockito.when;
 public class ParkingManageControllerTest {
 
     @Test
-    public void should_get_the_base_information_about_the_parkingLot_when_(){
-
+    public void should_get_the_base_information_about_the_parkingLot_when_order_is_correct(){
+        
     }
 
     @Test
@@ -28,12 +29,28 @@ public class ParkingManageControllerTest {
         List<ParkingBoy> parkingBoyList = new ArrayList<>();
         parkingBoyList.add(parkingBoy);
         ParkingManageController manageController = new ParkingManageController(parkingBoyList, request, response);
-        String lotId = "4234";
-        when(request.getCommand()).thenReturn(lotId);
-        when(parkingBoy.removeLot(lotId)).thenReturn(2);
+        String parkingLotInfo = "（北停车场，3）";
+        when(request.getCommand()).thenReturn(parkingLotInfo);
+        manageController.addParkingLotOperation(request);
+        verify(parkingBoy).addParkingLot(any());
+        verify(response).send("停车场添加成功！");
+    }
 
-        manageController.removeParkingLotOperation(request);
-        verify(response).send("停车场删除成功！");
+    @Test
+    //@DisplayName("throws exception")
+    public void should_add_the_parkingLot_failed_when_information_is_incorrect(){
+        Request request = mock(Request.class);
+        Response response = mock(Response.class);
+        ParkingBoy parkingBoy = mock(ParkingBoy.class);
+        List<ParkingBoy> parkingBoyList = new ArrayList<>();
+        parkingBoyList.add(parkingBoy);
+        ParkingManageController manageController = new ParkingManageController(parkingBoyList, request, response);
+        String parkingLotInfo = "（北停车场，ert）";
+        when(request.getCommand()).thenReturn(parkingLotInfo);
+        manageController.addParkingLotOperation(request);
+        //assertThrows(Exception.class, () -> manageController.addParkingLotOperation(request));
+        verify(response).send("输入有误");
+
     }
 
     @Test

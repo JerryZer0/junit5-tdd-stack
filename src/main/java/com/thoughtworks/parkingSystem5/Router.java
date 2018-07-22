@@ -116,7 +116,7 @@ public class Router {
     public void managePage(Request request) {
         switch (request.getCommand()) {
             case "1":
-                manageController.shouLotInfo();
+                manageController.showLotInfo();
                 this.setCurrentPage(CHOSE_OPERATION_PAGE);
                 break;
             case "2":

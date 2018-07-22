@@ -81,7 +81,7 @@ public class ParkingBoy {
         String info = "|停车场ID|名称|车位|已停车辆|剩余车位|\n";
         info += "======================================\n";
         for (ParkingLot parkingLot : parkingLotList) {
-            info += parkingLot.toString();
+            info += parkingLot.getInfo();
         }
         info += "\n总车位：" + getTotalSize() + "(个)\n";
         info += "停车总量：" + findCarCounts() + "(辆)\n";

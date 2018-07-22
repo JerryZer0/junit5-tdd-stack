@@ -63,7 +63,7 @@ public class ParkingLot {
         this.id = id;
     }
 
-    public String toString() {
+    public String getInfo() {
         String info = "|" + getId() + "|" + getName() + "|" + getSize() + "(个)|"
                 + getCarCounts() + "(辆)|" + (getSize() - getCarCounts()) + "(个)|\n";
         return info;

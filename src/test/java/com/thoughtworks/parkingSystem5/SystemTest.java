@@ -90,7 +90,7 @@ public class SystemTest {
 
         when(request.getCommand()).thenReturn("1");
         router.checkCurrentPage(request);
-        verify(manageController).shouLotInfo();
+        verify(manageController).showLotInfo();
         assertThat(router.getCurrentPage(),is("choseOperationPage"));
     }
 
