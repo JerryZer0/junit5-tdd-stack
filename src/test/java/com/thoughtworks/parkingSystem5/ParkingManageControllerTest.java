@@ -18,7 +18,23 @@ public class ParkingManageControllerTest {
 
     @Test
     public void should_get_the_base_information_about_the_parkingLot_when_order_is_correct(){
-        
+        Request request = mock(Request.class);
+        Response response = mock(Response.class);
+        ParkingBoy parkingBoy = mock(ParkingBoy.class);
+        List<ParkingBoy> parkingBoyList = new ArrayList<>();
+        parkingBoyList.add(parkingBoy);
+        ParkingManageController manageController = new ParkingManageController(parkingBoyList, request, response);
+        String info = "|停车场ID|名称|车位|已停车辆|剩余车位|\n" +
+                "======================================\n" +
+                "|001|西南停车场|28(个)|8(辆)|20(个)|\n" +
+                "|002|西南停车场|12(个)|8(辆)|4(个)|\n" +
+                "\n" +
+                "总车位：40(个)\n" +
+                "停车总量：16（辆）\n" +
+                "总剩余车位：24（个）";
+        when(parkingBoy.lotInfo()).thenReturn(info);
+        manageController.showLotInfo();
+        verify(response).send(info);
     }
 
     @Test
